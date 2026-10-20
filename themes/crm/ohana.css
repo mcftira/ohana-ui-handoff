@@ -1,0 +1,224 @@
+/* Hallmark · existing Ohana brand · macrostructure: Workbench · designed-as-app
+   Pre-emit critique: P5 H4 E4 S5 R5 V4.
+   Additive Espo 10 presentation only: native records, forms, icons and auth stay intact. */
+
+/* Local fonts include the Hungarian ő/ű glyphs; no third-party font request. */
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('./fonts/Fraunces-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('./fonts/Fraunces-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('./fonts/NunitoSans-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url('./fonts/NunitoSans-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+/* Keep dense operational text sans-serif. Display type is deliberately scoped. */
+body {
+  font-family: var(--ohana-font-body);
+  color: var(--text-color);
+  background-color: var(--body-bg);
+}
+#content .page-header .header-title,
+#content .page-header h3 {
+  font-family: var(--ohana-font-display);
+  font-size: var(--ohana-title-size);
+  font-weight: 450;
+  font-style: normal;
+  letter-spacing: -.025em;
+  line-height: 1.25;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+#content .page-header .header-title a,
+#content .page-header h3 a {
+  font-weight: inherit;
+}
+#navbar .navbar .navbar-brand > img.logo {
+  object-fit: contain;
+  object-position: left center;
+}
+#navbar .navbar-nav > .active > a {
+  box-shadow: inset 3px 0 0 var(--ohana-action);
+}
+#navbar .navbar-nav > .active > a .full-label {
+  font-weight: 700;
+}
+.list > table > thead > tr > th {
+  background-color: var(--ohana-paper);
+  color: var(--ohana-muted);
+  font-weight: 600;
+}
+.btn-primary {
+  font-weight: 700;
+}
+
+/* Visible keyboard focus without changing validation or disabled-state colors. */
+body :is(a, button, input, select, textarea, [role='button'], [tabindex]):focus-visible,
+body .btn:focus-visible,
+body .dropdown-toggle:focus:focus-visible {
+  outline: var(--ohana-focus-width) solid var(--ohana-action);
+  outline-offset: 2px;
+}
+
+/* The original login form owns labels, errors, password visibility and 2FA. */
+.container-centering:has(> #login) {
+  display: flex;
+  align-items: center;
+  min-height: calc(100svh - 96px);
+  height: auto;
+  top: auto;
+  padding-block: var(--ohana-space-lg);
+}
+.container-centering > #login.panel {
+  position: relative;
+  top: auto;
+  width: 100%;
+  max-width: 440px;
+  margin-block: 0;
+  border-color: var(--ohana-rule);
+}
+#login.panel > .panel-heading {
+  padding: var(--ohana-space-lg) var(--ohana-space-lg) var(--ohana-space-sm);
+}
+#login .logo-container {
+  width: 208px;
+  max-width: 100%;
+  height: 64px;
+  overflow: visible;
+}
+#login .logo-container img.logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: left center;
+}
+#login.panel > .panel-body {
+  padding: var(--ohana-space-sm) var(--ohana-space-lg) var(--ohana-space-lg);
+}
+#login .cell label {
+  color: var(--ohana-ink);
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: var(--ohana-space-xs);
+}
+#login .form-control {
+  min-height: 46px;
+  font-size: 16px;
+}
+#login .form-group {
+  margin-bottom: var(--ohana-space-md);
+}
+#login [data-role='password-input-container'] input {
+  padding-right: 48px;
+}
+#login [data-role='password-input-container'] a[data-action='toggleShowPassword'] {
+  top: 1px;
+  right: 1px;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+#login #btn-login,
+#login #btn-send {
+  min-width: 112px;
+  min-height: 46px;
+}
+/* Native second-factor/recovery forms have no panel heading. */
+#login.panel:not(:has(> .panel-heading)) > .panel-body::before {
+  content: '';
+  display: block;
+  width: 208px;
+  max-width: 100%;
+  height: 64px;
+  margin-block: var(--ohana-space-md) var(--ohana-space-lg);
+  background: url('./assets/ohana-wordmark-20261018.svg') left center / contain no-repeat;
+}
+
+@media (min-width: 1000px) {
+  .container-centering > #login.panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    max-width: 920px;
+  }
+  #login.panel::before {
+    content: '';
+    grid-column: 1;
+    grid-row: 1 / 3;
+    min-height: 448px;
+    background: var(--ohana-paper-deep) url('./assets/login-room.webp') center / cover;
+    border-radius: var(--ohana-radius) 0 0 var(--ohana-radius);
+  }
+  #login.panel > .panel-heading {
+    grid-column: 2;
+    grid-row: 1;
+    padding-top: var(--ohana-space-xl);
+  }
+  #login.panel > .panel-body {
+    grid-column: 2;
+    grid-row: 2;
+    padding-bottom: var(--ohana-space-xl);
+  }
+  #login.panel:not(:has(> .panel-heading)) > .panel-body {
+    grid-row: 1 / 3;
+  }
+}
+@media (max-width: 480px) {
+  #login.panel > .panel-heading {
+    padding: var(--ohana-space-md) var(--ohana-space-md) var(--ohana-space-xs);
+  }
+  #login.panel > .panel-body {
+    padding: var(--ohana-space-sm) var(--ohana-space-md) var(--ohana-space-md);
+  }
+  .container-centering:has(> #login) {
+    align-items: flex-start;
+    padding-top: var(--ohana-space-lg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+@media print {
+  #login.panel::before {
+    display: none;
+  }
+  .container-centering > #login.panel {
+    display: block;
+    max-width: 440px;
+  }
+}

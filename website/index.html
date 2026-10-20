@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+  <link rel="icon" type="image/png" href="assets/favicon-64.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ohana⁶ — Egy családias tér a csoportjaidnak</title>
+<meta name="description" content="Ohana⁶: egy családias, 95 m²-es tér Budapesten csoportokhoz, jógához, terápiához és workshopokhoz. Kulcs nélküli belépés, négy fix sáv, 06:30–22:00.">
+<meta name="theme-color" content="#3B2E26">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="hu_HU">
+<meta property="og:title" content="Ohana⁶ — Egy családias tér a csoportjaidnak">
+<meta property="og:description" content="95 m²-es közösségi tér Budapesten: jóga, önismereti csoport, terápia és workshop. Négy fix sáv, 06:30–22:00.">
+<meta property="og:url" content="https://ohana6.com/">
+<meta property="og:image" content="https://ohana6.com/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Az Ohana⁶ bolthajtásos téglaterme babzsákos elrendezéssel">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Meta Pixel — BOM-26: élesítés előtt bekapcsolni (n8n CAPI a vásárlásra) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Nunito+Sans:ital,opsz,wght@0,6..12,400..700;1,6..12,400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+/* Ohana base styles. Architectural redesign overrides live in venue.css. */
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--oat);color:var(--ink);font-family:var(--font-body);font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body::after{content:"";position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.1;letter-spacing:-.015em;color:var(--espresso);margin:0 0 .5em}
+h1{font-size:clamp(36px,5.6vw,60px)}
+h2{font-size:clamp(28px,3.6vw,42px)}
+h3{font-size:21px;font-weight:600}
+p{margin:0 0 1em}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+.section{padding:clamp(56px,7.5vw,100px) 0}
+.kicker{display:flex;align-items:center;gap:12px;font-family:var(--font-body);text-transform:uppercase;letter-spacing:.18em;font-size:13px;font-weight:700;color:var(--terracotta);margin-bottom:16px}
+.kicker::before{content:"";width:26px;height:2px;background:var(--terracotta);border-radius:2px}
+.kicker.center{justify-content:center}
+.lede{font-size:clamp(18px,2.2vw,21px);color:var(--ink-soft);max-width:58ch}
+.ucenter{text-align:center}
+.ucenter .lede{margin:0 auto}
+.muted{color:var(--ink-soft)}
+.it{font-style:italic;font-weight:500}
+.accent{color:var(--terracotta)}
+.skip{position:absolute;left:-999px;top:8px;background:var(--espresso);color:var(--on-dark);padding:10px 16px;border-radius:8px;z-index:10000}
+.skip:focus{left:8px}
+:focus-visible{outline:3px solid var(--terracotta);outline-offset:3px;border-radius:6px}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-body);font-weight:700;font-size:17px;padding:15px 26px;border-radius:999px;border:2px solid transparent;cursor:pointer;transition:transform .18s cubic-bezier(.22,1,.36,1),background .18s,box-shadow .18s,color .18s}
+.btn:active{transform:scale(.97)}
+.btn svg{width:20px;height:20px;transition:transform .2s cubic-bezier(.22,1,.36,1)}
+.btn-primary{background:var(--terracotta);color:var(--on-dark);box-shadow:var(--shadow)}
+.btn-primary:hover{background:var(--terracotta-d);transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.btn-primary:hover svg{transform:translateX(4px)}
+.btn-ghost{background:transparent;color:var(--espresso);border-color:var(--blush)}
+.btn-ghost:hover{background:var(--blush-t);transform:translateY(-2px)}
+/* Hallmark fix: ghost-CTA a SÖTÉT hero-n is olvasható legyen */
+.hero .btn-ghost{color:var(--on-dark);border-color:rgba(243,235,225,.55)}
+.hero .btn-ghost:hover{background:rgba(243,235,225,.12);border-color:rgba(243,235,225,.85)}
+.btn-sm{padding:11px 20px;font-size:15px}
+
+/* Header */
+header.nav{position:sticky;top:0;z-index:100;background:rgba(243,235,225,.85);backdrop-filter:saturate(140%) blur(12px);border-bottom:1px solid var(--border)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:70px}
+.brand{font-family:var(--font-display);font-size:27px;font-weight:600;color:var(--espresso);display:flex;align-items:center;gap:11px;letter-spacing:.01em}
+.brand svg{width:26px;height:26px;color:var(--terracotta)}
+.brand .brand-mark{height:44px;width:auto;display:block}
+footer .brand .brand-mark{height:56px}
+.nav-links{display:flex;align-items:center;gap:20px}
+.nav-links .btn{flex-shrink:0;white-space:nowrap}
+.nav-links a{font-weight:600;color:var(--ink-soft);transition:color .16s;position:relative}
+.nav-links a:not(.btn)::after{content:"";position:absolute;left:0;bottom:-6px;height:2px;width:0;background:var(--terracotta);border-radius:2px;transition:width .22s cubic-bezier(.22,1,.36,1)}
+.nav-links a:not(.btn):hover{color:var(--espresso)}
+.nav-links a:not(.btn):hover::after{width:100%}
+.nav-toggle{display:none;background:none;border:0;cursor:pointer;color:var(--espresso);padding:6px}
+.nav-toggle svg{width:28px;height:28px}
+
+/* Hero */
+.hero{position:relative;color:var(--on-dark);overflow:hidden;min-height:76vh;display:flex;align-items:center}
+.hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(110% 85% at 82% 6%, rgba(184,92,57,.6), transparent 55%),radial-gradient(85% 75% at 10% 96%, rgba(201,142,123,.38), transparent 60%),linear-gradient(160deg,#3B2E26 0%,#2A211B 100%)}
+.hero-bg::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 40% at 50% 110%, rgba(0,0,0,.4), transparent 60%)}
+.hero .wrap{position:relative;z-index:1;padding-top:clamp(46px,6vw,72px);padding-bottom:clamp(120px,13vw,150px);display:grid;grid-template-columns:1.12fr .88fr;gap:44px;align-items:center}
+.hero h1{color:var(--on-dark)}
+.hero h1 .accent{color:var(--blush)}
+.hero .sub{color:rgba(243,235,225,.92);font-size:clamp(18px,2.1vw,21px);max-width:46ch}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:28px;color:rgba(243,235,225,.85);font-weight:600;font-size:15px}
+.hero-chips span{display:inline-flex;align-items:center;gap:8px}
+.hero-chips svg{width:18px;height:18px;opacity:.95}
+.hero .kicker{color:var(--blush)}
+.hero .kicker::before{background:var(--blush)}
+/* vaulted-arch photo motif (bolthajtásos szuterén) */
+.archpanel{position:relative;border-radius:230px 230px var(--radius) var(--radius);overflow:hidden;min-height:430px;box-shadow:var(--shadow-lg);background:linear-gradient(150deg,#5a4436,#241b14)}
+.archpanel svg.scene{position:absolute;inset:0;width:100%;height:100%}
+.archpanel img.scene-house{position:absolute;inset:0;margin:auto;width:76%;max-width:330px;height:auto;z-index:1;filter:drop-shadow(0 8px 28px rgba(0,0,0,.4))}
+.archpanel .tag{position:absolute;left:16px;bottom:16px;z-index:2;background:rgba(42,33,27,.62);color:var(--on-dark);font-size:13px;font-weight:600;padding:8px 13px;border-radius:999px;backdrop-filter:blur(4px)}
+.hero-divider{position:absolute;left:0;right:0;bottom:-1px;z-index:2;line-height:0}
+.hero-divider svg{width:100%;height:72px}
+.scroll-hint{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);z-index:2;color:rgba(243,235,225,.75);font-size:12px;letter-spacing:.2em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:6px}
+.scroll-hint::after{content:"";width:1px;height:26px;background:linear-gradient(rgba(243,235,225,.8),transparent)}
+
+/* Trust bar */
+.trust{background:var(--card);border-bottom:1px solid var(--border)}
+.trust-in{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:24px 0}
+.trust-item{display:flex;align-items:center;gap:12px;font-weight:700;color:var(--espresso);font-size:16px}
+.trust-item .ico{flex:0 0 auto;width:44px;height:44px;border-radius:13px;background:var(--terracotta-t);display:grid;place-items:center;color:var(--terracotta)}
+.trust-item svg{width:22px;height:22px}
+
+/* Pillars (Miért az Ohana?) */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:36px}
+.pillar{text-align:center;padding:30px 22px;border-radius:var(--radius)}
+.pillar .big{width:74px;height:74px;margin:0 auto 18px;border-radius:50%;background:var(--terracotta-t);color:var(--terracotta);display:grid;place-items:center;transition:transform .25s cubic-bezier(.22,1,.36,1)}
+.pillar:hover .big{transform:scale(1.08) rotate(-4deg)}
+.pillar .big svg{width:34px;height:34px}
+.pillar h3{font-size:22px}
+.pillar p{color:var(--ink-soft);margin:0}
+
+/* Cards grid */
+.grid{display:grid;gap:20px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow);transition:transform .2s cubic-bezier(.22,1,.36,1),box-shadow .2s}
+.card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+.card .ico{width:50px;height:50px;border-radius:14px;background:var(--terracotta-t);color:var(--terracotta);display:grid;place-items:center;margin-bottom:16px;transition:background .2s,transform .25s}
+.card:hover .ico{background:var(--terracotta);color:var(--on-dark);transform:rotate(-5deg)}
+.card .ico svg{width:26px;height:26px}
+.card h3{margin-bottom:6px}
+.card p{color:var(--ink-soft);margin:0}
+.card .meta{margin-top:14px;font-size:14px;font-weight:700;color:var(--terracotta);text-transform:uppercase;letter-spacing:.06em}
+
+/* A tér */
+.ter{display:grid;grid-template-columns:1fr 1fr;gap:38px;align-items:center}
+.ter .ph,.ph{position:relative;border-radius:var(--radius);overflow:hidden;min-height:360px;box-shadow:var(--shadow-lg);background:linear-gradient(150deg,#5a4436,#241b14)}
+.ph .tag{position:absolute;left:14px;bottom:14px;z-index:2;background:rgba(42,33,27,.6);color:var(--on-dark);font-size:13px;font-weight:600;padding:7px 12px;border-radius:999px;backdrop-filter:blur(4px)}
+.ph::before{content:"";position:absolute;inset:0;opacity:.14;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='22' fill='none' stroke='%23F3EBE1' stroke-width='1'/%3E%3C/svg%3E")}
+.ter-blocks{display:grid;gap:16px;margin-top:18px}
+.ter-block{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:20px 22px;box-shadow:var(--shadow)}
+.ter-block h3{font-size:19px;margin-bottom:4px}
+.ter-block p{margin:0;color:var(--ink-soft)}
+.specs{display:flex;flex-wrap:wrap;gap:26px;margin-top:22px;padding-top:22px;border-top:1px solid var(--border)}
+.spec{min-width:120px}
+.spec b{font-family:var(--font-display);font-size:26px;color:var(--terracotta);display:block;line-height:1}
+.spec span{font-size:14px;color:var(--ink-soft);font-weight:600}
+
+/* Steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.step{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s}
+.step:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.step .num{font-family:var(--font-display);font-size:38px;color:var(--terracotta);font-weight:600;line-height:1;margin-bottom:10px;opacity:.9}
+.step h3{font-size:18px;margin-bottom:4px}
+.step p{margin:0;color:var(--ink-soft);font-size:16px}
+
+/* Pricing */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch;margin-top:36px}
+.price{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:30px 26px;display:flex;flex-direction:column;box-shadow:var(--shadow);position:relative;transition:transform .2s,box-shadow .2s}
+.price:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.price.feat{background:linear-gradient(160deg,#3B2E26,#2A211B);color:var(--on-dark);border-color:transparent;box-shadow:var(--shadow-lg);transform:translateY(-8px)}
+.price.feat:hover{transform:translateY(-11px)}
+.price.feat h3,.price.feat .amt{color:var(--on-dark)}
+.price.feat li{color:rgba(243,235,225,.85)}
+.badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--terracotta);color:var(--on-dark);font-weight:700;font-size:13px;letter-spacing:.04em;padding:6px 14px;border-radius:999px;white-space:nowrap;box-shadow:var(--shadow)}
+.price h3{font-size:20px}
+.price .amt{font-family:var(--font-display);font-size:28px;color:var(--espresso);font-weight:600;margin:6px 0 2px}
+.price ul{list-style:none;padding:0;margin:18px 0 22px;display:grid;gap:10px}
+.price li{display:flex;gap:10px;color:var(--ink-soft);font-size:16px}
+.price li svg{width:20px;height:20px;color:var(--terracotta);flex:0 0 auto;margin-top:2px}
+.price .btn{margin-top:auto;justify-content:center}
+.price-note{text-align:center;color:var(--ink-soft);margin-top:20px}
+
+/* Gallery */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:190px;gap:16px;margin-top:32px}
+.gph{position:relative;border-radius:var(--radius-sm);overflow:hidden;box-shadow:var(--shadow);background:linear-gradient(150deg,#5a4436,#241b14)}
+.gph.tall{grid-row:span 2}
+.gph svg.scene{position:absolute;inset:0;width:100%;height:100%;transition:transform .5s cubic-bezier(.22,1,.36,1)}
+.gph:hover svg.scene{transform:scale(1.06)}
+.gph .tag{position:absolute;left:12px;bottom:12px;z-index:2;background:rgba(42,33,27,.6);color:var(--on-dark);font-size:12px;font-weight:600;padding:6px 11px;border-radius:999px;backdrop-filter:blur(4px)}
+
+/* Terepszemle */
+.viewing{background:var(--espresso);color:var(--on-dark);border-radius:var(--radius);padding:clamp(30px,5vw,56px);display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+.viewing::before{content:"";position:absolute;inset:0;background:radial-gradient(80% 120% at 90% 10%, rgba(184,92,57,.5), transparent 55%);opacity:.75}
+.viewing>*{position:relative;z-index:1}
+.viewing h2{color:var(--on-dark)}
+.viewing p{color:rgba(243,235,225,.88)}
+
+/* Testimonials */
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px}
+.quote{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+.quote:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.quote .stars{color:var(--terracotta);font-size:16px;letter-spacing:2px;margin-bottom:12px}
+.quote p{font-family:var(--font-display);font-size:19px;color:var(--espresso);line-height:1.45;margin:0 0 18px}
+.quote .who{margin-top:auto;display:flex;align-items:center;gap:12px;font-weight:700;color:var(--ink-soft);font-size:15px}
+.avatar{flex:0 0 auto;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-display);font-weight:700;font-size:18px;color:var(--on-dark)}
+
+/* FAQ */
+.faq{max-width:760px;margin:0 auto;display:grid;gap:12px;margin-top:32px}
+.faq details{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);box-shadow:var(--shadow);overflow:hidden}
+.faq summary{cursor:pointer;list-style:none;padding:18px 22px;font-weight:700;color:var(--espresso);display:flex;justify-content:space-between;align-items:center;gap:14px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .plus{flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:var(--terracotta-t);color:var(--terracotta);display:grid;place-items:center;transition:transform .25s}
+.faq details[open] summary .plus{transform:rotate(45deg)}
+.faq .a{padding:0 22px 20px;color:var(--ink-soft)}
+
+/* Final CTA band */
+.ctaband{position:relative;overflow:hidden;border-radius:var(--radius);color:var(--on-dark);text-align:center;padding:clamp(44px,6vw,72px) clamp(24px,5vw,64px);box-shadow:var(--shadow-lg);background:radial-gradient(90% 120% at 50% -10%, rgba(184,92,57,.55), transparent 55%),linear-gradient(160deg,#3B2E26,#2A211B)}
+.ctaband h2{color:var(--on-dark);max-width:20ch;margin:0 auto .4em}
+.ctaband p{color:rgba(243,235,225,.9);max-width:52ch;margin:0 auto 24px}
+.ctaband .btn-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.ctaband .btn-ghost{color:var(--on-dark);border-color:var(--blush)}
+
+/* Footer */
+footer{background:var(--fust);color:var(--on-dark);padding:56px 0 40px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px}
+footer .brand{color:var(--on-dark);margin-bottom:12px}
+footer p{color:rgba(243,235,225,.72);font-size:15px}
+footer h4{color:var(--on-dark);font-size:14px;text-transform:uppercase;letter-spacing:.1em;margin:0 0 14px}
+footer a{color:rgba(243,235,225,.82);display:block;padding:5px 0;transition:color .16s}
+footer a:hover{color:var(--on-dark)}
+.wa-pill{display:inline-flex;align-items:center;gap:10px;background:var(--terracotta);color:var(--on-dark);padding:12px 18px;border-radius:999px;font-weight:700;margin-top:10px;transition:background .18s,transform .18s}
+.wa-pill:hover{background:var(--terracotta-d);transform:translateY(-2px)}
+.wa-pill svg{width:20px;height:20px}
+.foot-bottom{border-top:1px solid rgba(243,235,225,.16);margin-top:36px;padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:rgba(243,235,225,.6);font-size:14px}
+
+/* Sticky mobile CTA */
+.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:90;display:none;gap:10px;padding:12px 14px calc(12px + env(safe-area-inset-bottom));background:rgba(243,235,225,.95);backdrop-filter:blur(12px);border-top:1px solid var(--border);box-shadow:0 -8px 24px -12px rgba(59,46,38,.3)}
+.sticky-cta .btn{flex:1;justify-content:center;padding:14px 12px}
+
+/* Sáv-árak kiegészítés (BASE-INFO) */
+.price .time{font-weight:700;color:var(--ink-soft);font-size:15px;margin-top:4px}
+.price .per{font-size:14.5px;color:var(--terracotta);font-weight:800;margin-top:2px}
+.price.feat .per{color:#E9B79E}
+.price-grid.p4{grid-template-columns:repeat(4,1fr)}
+.berlet{margin-top:26px;background:linear-gradient(160deg,#3B2E26,#2A211B);color:var(--on-dark);border-radius:var(--radius);padding:26px clamp(22px,4vw,36px);display:flex;flex-wrap:wrap;align-items:center;gap:16px 30px;box-shadow:var(--shadow)}
+.berlet h3{color:var(--on-dark);margin:0 0 4px;font-size:20px}
+.berlet>p{margin:0;color:rgba(243,235,225,.85);font-size:16px}
+.berlet .deal{display:flex;flex-direction:column;gap:1px}
+.berlet .deal b{font-family:var(--font-display);font-size:20px;color:#E9B79E;font-weight:600}
+.berlet .deal span{font-size:14px;color:rgba(243,235,225,.75)}
+.berlet .deal s{opacity:.6}
+.berlet .btn{margin-left:auto;flex-shrink:0}
+/* Program-paletta (typography-first, valódi fotókig) */
+.palette{display:flex;flex-wrap:wrap;gap:10px 12px;margin-top:26px;max-width:920px}
+.palette span{font-family:var(--font-display);font-size:clamp(16.5px,2vw,20px);color:var(--espresso);background:var(--oat);border:1px solid var(--border);border-radius:999px;padding:8px 17px}
+.palette span:nth-child(4n+1){color:var(--terracotta)}
+/* Bizalom — tény-chipek */
+.facts{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:26px}
+.facts b{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border);border-radius:999px;padding:10px 18px;font-size:16px;color:var(--espresso);box-shadow:var(--shadow)}
+.facts svg{width:18px;height:18px;color:var(--terracotta)}
+
+/* Reveal */
+.js .reveal{opacity:0;transform:translateY(16px);transition:opacity .46s cubic-bezier(.22,1,.36,1),transform .46s cubic-bezier(.22,1,.36,1)}
+.js .reveal.in{opacity:1;transform:none}
+
+@media (max-width:920px){
+  .hero .wrap{grid-template-columns:1fr;gap:30px}
+  .archpanel{min-height:300px}
+  .g3,.price-grid,.price-grid.p4,.quotes,.pillars{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .ter,.viewing{grid-template-columns:1fr}
+  .trust-in{grid-template-columns:1fr 1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .gallery{grid-template-columns:1fr 1fr}
+}
+@media (max-width:620px){
+  body{font-size:17px}
+  .g3,.price-grid,.quotes,.steps,.trust-in,.foot-grid,.pillars,.gallery{grid-template-columns:1fr}
+  .gallery{grid-auto-rows:220px}
+  .gph.tall{grid-row:span 1}
+  .nav-links{position:absolute;top:70px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--oat);border-bottom:1px solid var(--border);padding:8px 22px 18px;box-shadow:var(--shadow);display:none}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:13px 0;border-bottom:1px solid var(--border);font-size:17px}
+  .nav-links a::after{display:none}
+  .nav-toggle{display:block}
+  .sticky-cta{display:flex}
+  .price.feat{transform:none}
+  .hero{min-height:0}
+  .hero .wrap{padding-top:36px;padding-bottom:120px}
+  footer{padding-bottom:96px}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .js .reveal{opacity:1;transform:none;transition:none}
+  .gph:hover svg.scene{transform:none}
+  *{transition-duration:.001ms !important;animation-duration:.001ms !important}
+}
+
+/* Readable controls, quieter surfaces, and a layout that fits small screens. */
+html,body{overflow-x:clip}
+html{scroll-padding-top:94px}
+h1,h2,h3{overflow-wrap:anywhere;min-width:0;text-wrap:balance}
+body::after{display:none}
+.wrap>*{min-width:0}
+.btn{justify-content:center;white-space:nowrap;line-height:1.25;min-height:48px;transition:background .18s}
+.btn svg{flex-shrink:0;transition:none}
+.btn-primary,.wa-pill{background:var(--action);color:var(--on-dark)}
+.btn-primary:hover,.wa-pill:hover{background:var(--action-hover);transform:none;box-shadow:var(--shadow)}
+.btn:hover svg,.btn-ghost:hover{transform:none}
+.nav-links .btn-primary{color:var(--on-dark)}
+.nav-links a:not(.btn)::after{transition:none}
+.nav-toggle{min-width:44px;min-height:44px}
+.nav-toggle[aria-expanded="true"]{background:var(--blush-t);border-radius:var(--radius-sm)}
+.hero{min-height:0;background:var(--espresso)}
+.hero-bg{background:var(--espresso)}
+.hero-bg::before,.scroll-hint{display:none}
+.hero .wrap{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);padding-top:56px;padding-bottom:88px;gap:var(--space-xl)}
+.hero h1{font-size:clamp(36px,4.6vw,54px);max-width:19ch}
+.hero .sub{font-size:19px;max-width:48ch}
+.hero-cta{align-items:center}
+.hero .booking-note{font-size:14px;line-height:1.6;margin:20px 0 0;max-width:52ch;color:var(--on-dark)}
+.booking-note a{text-decoration:underline;text-underline-offset:3px;font-weight:700}
+.hero-chips{margin-top:var(--space-md)}
+.hero :focus-visible,.price.feat :focus-visible,.viewing :focus-visible,.ctaband :focus-visible,footer :focus-visible{outline-color:var(--focus-light)}
+.archpanel{min-height:380px;box-shadow:none}
+.archpanel .tag{left:var(--space-sm);right:var(--space-sm);text-align:center;border-radius:var(--radius-sm)}
+.trust-in{gap:var(--space-md);padding:var(--space-md) 22px}
+.trust-item{font-size:14px;line-height:1.5}
+.trust-item .ico{width:36px;height:36px;border-radius:50%}
+.pillar .big,.card,.card .ico,.step,.price,.quote{transition:none}
+.pillar:hover .big,.card:hover,.card:hover .ico,.step:hover,.price:hover,.quote:hover{transform:none}
+.card:hover,.step:hover,.price:hover,.quote:hover{box-shadow:var(--shadow)}
+.card:hover .ico{background:var(--terracotta-t);color:var(--terracotta)}
+#kinek .g3{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 var(--space-xl)}
+#kinek .card{background:transparent;border:0;border-bottom:1px solid var(--border);border-radius:0;box-shadow:none;padding:var(--space-md) 0;display:grid;grid-template-columns:48px minmax(0,1fr);column-gap:var(--space-sm)}
+#kinek .card .ico{grid-row:1 / 4;width:40px;height:40px;margin:0}
+#kinek .card h3,#kinek .card p,#kinek .card .meta{grid-column:2}
+#kinek .card .meta{margin-top:8px}
+.ter{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.price-grid.p4{grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-sm)}
+.price{padding:var(--space-lg) 20px var(--space-md)}
+.price.feat,.price.feat:hover{transform:none}
+.price.feat .time{color:var(--on-dark)}
+.price.feat .badge{background:var(--action)}
+.price .btn{font-size:15px;padding:12px}
+.price .time{font-size:14px}
+.price .amt{font-variant-numeric:tabular-nums;white-space:nowrap}
+.price .badge{font-size:12px}
+.price-note{max-width:80ch;margin:var(--space-md) auto 0;font-size:16px}
+.viewing{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}
+.viewing .btn{font-size:16px;padding-inline:var(--space-sm)}
+#bizalom .btn-row{display:flex;align-items:center}
+.faq summary{min-height:60px}
+footer a{width:fit-content;text-decoration:underline;text-underline-offset:4px}
+footer .wa-pill{text-decoration:none}
+.js .reveal{opacity:1;transform:none;transition:none}
+@media(max-width:1000px){
+  .price-grid.p4{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-lg) var(--space-md)}
+  .hero .wrap{gap:var(--space-md)}
+  .hero-cta .btn{font-size:16px;padding-inline:20px}
+}
+@media(max-width:800px){
+  .nav-toggle{display:block}
+  .nav-links{position:absolute;top:70px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--oat);border-bottom:1px solid var(--border);padding:8px 22px 18px;box-shadow:var(--shadow);display:none;max-height:calc(100dvh - 70px);overflow-y:auto}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:12px 0;border-bottom:1px solid var(--border);font-size:17px}
+  .nav-links a::after{display:none}
+  .nav-links .btn{margin-top:8px;border-bottom:0}
+  .hero .wrap,.ter,.viewing{grid-template-columns:minmax(0,1fr)}
+  .hero .wrap{padding-top:40px;padding-bottom:72px}
+  .hero h1{max-width:20ch}
+  .archpanel{min-height:300px;max-width:480px;width:100%;justify-self:center}
+  .archpanel img.scene-house{max-width:240px}
+  .viewing .btn{width:fit-content}
+}
+@media(max-width:620px){
+  .price-grid.p4,#kinek .g3{grid-template-columns:minmax(0,1fr)}
+  .trust-in{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-md) var(--space-sm)}
+  .trust-item{align-items:flex-start;flex-direction:column;font-size:14px}
+  .hero .sub{font-size:18px}
+  .hero-cta{align-items:stretch}
+  .hero-cta .btn{width:100%}
+  .hero-chips{gap:12px;font-size:14px}
+  .price{padding:var(--space-lg) var(--space-md) var(--space-md)}
+  .price .time{font-size:16px}
+  .price .amt{font-size:34px}
+  .price .btn{font-size:16px}
+  .viewing{padding:var(--space-md)}
+  .viewing .btn,#bizalom .btn{font-size:15px;padding-inline:12px;width:100%}
+  .berlet .btn{margin-left:0;width:100%}
+  .ctaband{padding:var(--space-lg) var(--space-md)}
+  .ctaband .btn{width:100%;font-size:16px;padding-inline:12px}
+  .sticky-cta{align-items:center}
+  .sticky-cta .btn{min-width:0;font-size:15px;white-space:nowrap}
+  /* Keep Netlify's injected badge clear of both mobile actions. */
+  #nl-badge-frame{bottom:calc(84px + env(safe-area-inset-bottom)) !important}
+  footer{padding-bottom:120px}
+}
+@media(prefers-reduced-motion:reduce){
+  .btn:active,.btn:hover,.wa-pill:hover{transform:none}
+}
+
+/* Real interior photography, supplied by the owner. */
+.room-photo{margin:0;min-width:0}
+.room-photo img{width:100%;height:auto;border-radius:var(--radius-sm)}
+.room-photo figcaption{font-size:13px;line-height:1.5;margin-top:12px;color:var(--ink-soft)}
+.hero-photo figcaption{color:var(--on-dark)}
+.hero .wrap{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.photo-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px 24px;margin-top:32px}
+.photo-gallery figure{margin:0;min-width:0}
+.photo-gallery a{display:block;border-radius:var(--radius-sm)}
+.photo-gallery a:hover{outline:2px solid var(--terracotta);outline-offset:4px}
+.photo-gallery img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:var(--radius-sm)}
+.photo-gallery figcaption{font-size:16px;font-weight:700;margin-top:12px;color:var(--espresso)}
+.program-heading{margin-top:48px}
+@media(max-width:1000px){.nav-links{gap:12px}.nav-links a{font-size:15px}}
+@media(max-width:920px){.photo-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:800px){.hero .wrap{grid-template-columns:minmax(0,1fr)}.hero-photo{max-width:600px;width:100%;justify-self:center}}
+@media(max-width:620px){.photo-gallery{grid-template-columns:minmax(0,1fr);gap:28px}.hero-photo{margin-top:8px}}
+
+</style>
+<link rel="stylesheet" href="venue.css?v=20261018-feedback">
+</head>
+<body>
+<a class="skip" href="#main">Ugrás a tartalomra</a>
+
+<!-- ===== Header ===== -->
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" aria-label="Ohana⁶ – kezdőlap">
+      <img class="brand-mark" src="assets/ohana-house-dark.png" alt="Ohana⁶ ház">Ohana⁶</a>
+    <button class="nav-toggle" aria-label="Menü" aria-expanded="false" aria-controls="menu">
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav class="nav-links" id="menu" aria-label="Fő navigáció">
+      <a href="#kinek">Kinek?</a>
+      <a href="#ter">A tér</a>
+      <a href="#galeria">Fotók</a>
+      <a href="#hogyan">Hogyan működik</a>
+      <a href="#arak">Árak</a>
+      <a href="#gyik">GYIK</a>
+      <a class="btn btn-primary btn-sm" href="/foglalas/">Foglalás</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<!-- ===== Hero ===== -->
+<section class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <img class="hero-cover" src="assets/photos/terem-babzsakok-1600.webp" srcset="assets/photos/terem-babzsakok-960.webp 960w, assets/photos/terem-babzsakok-1600.webp 1600w, assets/photos/terem-babzsakok-2400.webp 2400w" sizes="100vw" width="2400" height="1600" alt="Babzsákos elrendezés az Ohana⁶ bolthajtásos termében" fetchpriority="high" decoding="async">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="hero-location">Ohana⁶ közösségi tér, Budapest</p>
+      <h1>Egy családias tér a csoportjaidnak</h1>
+      <p class="sub">95 m² a közös gyakorláshoz, beszélgetésekhez és a saját programodhoz. Budapest szívéhez közel, meleg téglaboltozatok alatt.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="/foglalas/"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Foglalj időpontot</a>
+        <a class="btn btn-ghost" href="https://wa.me/36705306514?text=Szia%21%20K%C3%A9rn%C3%A9k%20egy%20ingyenes%20terepszemle%20id%C5%91pontot.">Ingyenes terepszemle</a>
+      </div>
+
+
+    </div>
+
+  </div>
+  <div class="hero-address">1089 Budapest, Benyovszky Móric u. 6.</div>
+  <div class="hero-divider" aria-hidden="true"><svg aria-hidden="true" viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0 80 C 240 20 480 0 720 12 C 960 24 1200 44 1440 16 L1440 80 Z" fill="#FBF7F0"/></svg></div>
+  <div class="scroll-hint" aria-hidden="true">Görgess</div>
+</section>
+
+<!-- ===== Trust bar ===== -->
+<section class="trust" aria-label="Biztosságok">
+  <div class="wrap trust-in">
+    <div class="trust-item reveal"><span class="ico"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="3.5"/><path d="M11 11l8 8M16 16l2-2M18 18l2-2"/></svg></span>Kulcs nélküli belépés</div>
+    <div class="trust-item reveal"><span class="ico"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>4 fix sáv 06:30–22:00</div>
+    <div class="trust-item reveal"><span class="ico"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l1.6 3.9L18 9.5l-4.4 1.6L12 15l-1.6-3.9L6 9.5l4.4-1.6z"/><path d="M18 14l.8 1.8L21 16.5l-2.2.8L18 19l-.8-1.7-2.2-.8 2.2-.7z"/></svg></span>95 m², akár 31 fő</div>
+    <div class="trust-item reveal"><span class="ico"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.3-7-9a4 4 0 017-2.6A4 4 0 0119 11c0 4.7-7 9-7 9z"/></svg></span>Lemondás az ÁSZF szerint</div>
+  </div>
+</section>
+
+<div class="booking-status wrap" data-booking-status><p class="booking-note"><span data-booking-copy="home-status">Az online fizetési lehetőséget ellenőrizzük. Addig WhatsAppon tudsz egyeztetni.</span> <a href="https://wa.me/36705306514">Segítség WhatsAppon ↗</a></p></div>
+
+<!-- ===== Miért az Ohana? (Problem/Solution) ===== -->
+<section class="section" id="miert">
+  <div class="wrap">
+    <div class="ucenter">
+      <h2 class="reveal">Van, amihez<br>kell egy jó hely.</h2>
+      <p class="lede reveal">Egy kör, egy beszélgetés, egy közös gyakorlás. Az Ohana⁶ családias környezetet ad a csoportodnak, ahol a saját programodra figyelhetsz.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar reveal">
+        <span class="big"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+        <h3>Együtt</h3>
+        <p>Önismereti csoport, közös mozgás vagy egyéni beszélgetés: a teret a programodhoz alakíthatod.</p>
+      </div>
+      <div class="pillar reveal">
+        <span class="big"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5 5l1.4 1.4M17.6 17.6L19 19M5 19l1.4-1.4M17.6 6.4L19 5"/></svg></span>
+        <h3>Meleg</h3>
+        <p>Téglaboltozatok, természetes fény és állítható, meleg világítás. Közvetlen, otthonos környezet a találkozásokhoz.</p>
+      </div>
+      <div class="pillar reveal">
+        <span class="big"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg></span>
+        <h3>Egyszerű</h3>
+        <p>Nincs app, nincs kulcs, nincs várakozás. A kód a telefonodban, a terem készen vár.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Kinek? ===== -->
+<section class="section" id="kinek" style="background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="wrap">
+    <h2 class="reveal">A programot te hozod.</h2>
+    <p class="lede reveal">Kiscsoportos foglalkozástól az előadásig: a székekkel, babzsákokkal és szabad padlófelülettel a programodhoz alakíthatod a teret.</p>
+    <div class="grid g3" style="margin-top:34px">
+      <div class="card reveal"><span class="ico"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20C4 12 9 5 20 4c0 9-5 14-13 14"/><path d="M8 16c3-3 6-4 9-5"/></svg></span><h3>Jóga</h3><p>Közös gyakorlás, meditáció és mozgás, a csoportod ritmusában.</p><div class="meta">15 fő + foglalkozásvezető</div></div>
+      <div class="card reveal"><span class="ico"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 8c2 0 2 2 4 2s2-2 4-2 2 2 4 2 2-2 4-2"/><path d="M3 14c2 0 2 2 4 2s2-2 4-2 2 2 4 2 2-2 4-2"/></svg></span><h3>Hangfürdő</h3><p>Hozd a saját hangszereidet, és alakítsd ki a relaxációhoz illő teret.</p><div class="meta">max. 21 fő</div></div>
+      <div class="card reveal"><span class="ico"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><circle cx="17.5" cy="9" r="2.4"/><path d="M17 15c2.5.2 4.5 1.8 4.5 5"/></svg></span><h3>Csoportterápia</h3><p>Önismereti csoport, pszichodráma vagy rendszerállítás, körbe rendezhető térben.</p><div class="meta">max. 21 fő</div></div>
+      <div class="card reveal"><span class="ico"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5c1.8 1.8 1.8 4.4 0 7-1.8-2.6-1.8-5.2 0-7z"/><path d="M6.5 9.5c2.6 0 5.5 1.6 5.5 5-2.6 0-5.5-1.6-5.5-5z"/><path d="M17.5 9.5c-2.6 0-5.5 1.6-5.5 5 2.6 0 5.5-1.6 5.5-5z"/></svg></span><h3>Masszázs</h3><p>Egyéni kezelésekhez és testmunkához. A szükséges eszközöket előre egyeztessük.</p><div class="meta">max. 2 fő</div></div>
+      <div class="card reveal"><span class="ico"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 00-4 10c.6.6 1 1.4 1 2h6c0-.6.4-1.4 1-2a6 6 0 00-4-10z"/></svg></span><h3>Workshop</h3><p>Praxis-, kézműves- és fejlődési foglalkozások.</p><div class="meta">15 fő + foglalkozásvezető</div></div>
+      <div class="card reveal"><span class="ico"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 15h18M8 4v16M16 4v16"/></svg></span><h3>Előadás</h3><p>Könyvbemutató, beszélgetés vagy tréning, a csoportodhoz igazított elrendezéssel.</p><div class="meta">max. 31 fő</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== A tér ===== -->
+<section class="section" id="ter">
+  <div class="wrap ter">
+    <figure class="room-photo space-photo"><img src="assets/photos/terem-ures-960.webp" srcset="assets/photos/terem-ures-640.webp 640w, assets/photos/terem-ures-960.webp 960w, assets/photos/terem-ures-1600.webp 1600w" sizes="(max-width:620px) calc(100vw - 44px), (max-width:920px) 46vw, 540px" width="960" height="657" alt="Az Ohana⁶ üres nagyterme téglaboltozattal és szabad padlófelülettel" loading="lazy" decoding="async"><figcaption>A nagyterem berendezés nélkül</figcaption></figure>
+    <div>
+      <h2 class="reveal">Régi tégla.<br>Új lehetőségek.</h2>
+      <div class="ter-blocks">
+        <div class="ter-block reveal"><h3>Minden adott</h3><p>15 kinyitható szék, 15 babzsák, Bluetooth-hangszóró és gyors wifi. Minikonyha, öltöző és két mosdó is tartozik a térhez.</p></div>
+        <div class="ter-block reveal"><h3>Fény a programodhoz</h3><p>Napközben természetes fény jut be, este pedig állítható, meleg LED-világítást használhatsz. Klíma és radiátor gondoskodik a hőmérsékletről.</p></div>
+        <div class="ter-block reveal"><h3>Fel- és lepakolás a sávidőben</h3><p>A készülődés és az elpakolás is a lefoglalt sáv része. A túlfutás és a szükséges extra takarítás külön díjjal jár; a részleteket a <a href="#hazirend">házirendben</a> találod.</p></div>
+      </div>
+      <div class="specs reveal">
+        <div class="spec"><b>95 m²</b><span>családias tér</span></div>
+        <div class="spec"><b>22</b><span>programtípus</span></div>
+        <div class="spec"><b>4</b><span>fix sáv</span></div>
+        <div class="spec"><b>06:30–22:00</b><span>foglalható</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Hogyan működik ===== -->
+<section class="section" id="hogyan" style="background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="wrap">
+    <h2 class="reveal">Hogyan működik</h2>
+    <div class="steps" style="margin-top:30px">
+      <div class="step reveal"><div class="num">01</div><h3>Foglalsz online</h3><p>Kiválasztod a napot és a sávot a foglalóban — pár kattintás.</p></div>
+      <div class="step reveal"><div class="num">02</div><h3 data-booking-copy="home-payment-title">Egyeztetsz velünk</h3><p data-booking-copy="home-payment-copy">A kiválasztott időpontot WhatsAppon tudod egyeztetni velünk.</p></div>
+      <div class="step reveal"><div class="num">03</div><h3>Megkapod a kódot</h3><p>A belépési PIN a foglalás előtt ~30 perccel érkezik WhatsAppon.</p></div>
+      <div class="step reveal"><div class="num">04</div><h3>Belépsz</h3><p>Beírod a kódot — a terem készen vár, meleg fénnyel.</p></div>
+    </div>
+    <p class="muted reveal" style="margin-top:16px">Nincs app, nincs kulcs, nincs várakozás. A kulcs a telefonodban van. Nem vagy biztos benne? <a href="https://wa.me/36705306514?text=Szia%21%20K%C3%A9rn%C3%A9k%20egy%20ingyenes%20terepszemle%20id%C5%91pontot." style="color:var(--terracotta);font-weight:700;text-decoration:underline">Gyere el egy 20 perces, ingyenes terepszemlére →</a></p>
+  </div>
+</section>
+
+<!-- ===== Árak ===== -->
+<section class="section" id="arak">
+  <div class="wrap">
+    <div class="ucenter"><h2>Négy sáv.<br>A saját ritmusodban.</h2>
+    <p class="lede">A sáv teljes egésze a tiéd — berendezéssel, felszereléssel, kulcs nélküli belépéssel.</p></div>
+    <div class="price-grid p4" aria-label="Sávok és árak">
+      <div class="price">
+        <h3>Reggeli sáv</h3>
+        <div class="time">06:30–09:30 · 3 óra</div>
+        <div class="amt">9 000 Ft</div>
+        <div class="per">3 000 Ft/óra</div>
+        <ul>
+          <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg>Reggeli jóga, meditáció, mozgás</li>
+          <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg>Csendes indulás, mielőtt a város felkel</li>
+        </ul>
+        <a class="btn btn-primary" href="/foglalas/">Sáv kiválasztása</a>
+      </div>
+      <div class="price">
+        <h3>Office Hours</h3>
+        <div class="time">10:00–16:00 · 6 óra</div>
+        <div class="amt">24 000 Ft</div>
+        <div class="per">4 000 Ft/óra</div>
+        <ul>
+          <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg>Egyéni ülések, coaching, coworking</li>
+          <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg>Nappali munka nyugiban, wifivel</li>
+        </ul>
+        <a class="btn btn-primary" href="/foglalas/">Sáv kiválasztása</a>
+      </div>
+      <div class="price feat">
+        <span class="badge">Csoportos programokhoz</span>
+        <h3>Esti sáv</h3>
+        <div class="time">17:00–22:00 · 5 óra</div>
+        <div class="amt">33 000 Ft</div>
+        <div class="per">6 600 Ft/óra</div>
+        <ul>
+          <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg>Csoportok, hangfürdő, workshop</li>
+          <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg>A tér legszebb fényei</li>
+        </ul>
+        <a class="btn btn-primary" href="/foglalas/">Sáv kiválasztása</a>
+      </div>
+      <div class="price">
+        <span class="badge">A teljes nap a tiéd</span>
+        <h3>Egész nap</h3>
+        <div class="time">06:30–22:00 · 15,5 óra</div>
+        <div class="amt">49 000 Ft</div>
+        <div class="per">kb. 3 160 Ft/óra</div>
+        <ul>
+          <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg>Tanfolyam, retreat, rendezvény</li>
+          <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg>A teljes tér egy napra</li>
+        </ul>
+        <a class="btn btn-primary" href="/foglalas/">Sáv kiválasztása</a>
+      </div>
+    </div>
+    <div class="berlet">
+      <div>
+        <h3>Rendszeresen tartanál programot?</h3>
+        <p>Bérlettel 10–15%-kal olcsóbb — ugyanarra a sávra, egy összegben.</p>
+      </div>
+      <div class="deal"><b>6 alkalmas −10%</b><span>pl. Esti: <s>198 000</s> 178 200 Ft</span></div>
+      <div class="deal"><b>12 alkalmas −15%</b><span>pl. Esti: <s>396 000</s> 336 600 Ft</span></div>
+      <a class="btn btn-primary" href="https://wa.me/36705306514?text=Szia%21%20B%C3%A9rlettel%20foglaln%C3%A9k%20rendszeresen.">Bérletet kérek</a>
+    </div>
+    <p class="price-note">A készülődés és elpakolás a sávidőbe számít. Egyedi foglalás vagy teljes bérlet lemondásakor: <strong>legalább 21 naptári nappal előtte 100%, 15–20 nappal előtte 50% visszatérítés; 0–14 nappal előtte nincs visszatérítés</strong>. A határidőket egyedi foglalásnál a lefoglalt időponttól, teljes bérletnél az első alkalom időpontjától számítjuk vissza. Megkezdett bérlet már nem mondható le; hátralévő alkalmai csak áthelyezhetők az alábbi feltételekkel.</p>
+    <p class="price-note">A kedvezményes bérlet egyes alkalmai nem mondhatók le, és díjuk nem téríthető vissza. Áthelyezés legalább 15 nappal az alkalom előtt, írásban az <a href="mailto:i@tomihermann.com">i@tomihermann.com</a> címen kérhető, a szabad időpontok függvényében. 14 napon belül az alkalom felhasználtnak számít, és nem helyezhető át. <a href="https://tomihermann.notion.site/p/Ohana-Foglal-s-SZF-3de285bb7baa8003bce5d428a3824196?pvs=24" target="_blank" rel="noopener">Részletes feltételek az ÁSZF-ben ↗</a></p>
+  </div>
+</section>
+
+<section class="section" id="terepszemle" style="padding-top:0">
+  <div class="wrap">
+    <div class="viewing">
+      <div>
+        <h2>Nézd meg élőben, mielőtt foglalsz.</h2>
+        <p>Jöjj el egy rövid terepszemlére — megmutatjuk a teret, a berendezést és a belépést. Nem kötelező semmire, csak nézd meg, hogy illik-e hozzád.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <a class="btn btn-primary" href="https://wa.me/36705306514?text=Szia%21%20K%C3%A9rn%C3%A9k%20egy%20ingyenes%20terepszemle%20id%C5%91pontot."><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5c0 9 6 15 15 15l1-4-5-2-2 2c-2-1-4-3-5-5l2-2-2-5z"/></svg>Írj WhatsAppon</a>
+        <p class="muted" style="color:rgba(243,235,225,.7);margin:0">20 perc, ingyen, nem kötelez semmire. Hamar visszajelzünk.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Galéria ===== -->
+<section class="section" id="galeria" style="background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="wrap">
+    <h2>Nézz körül az Ohana⁶-ban</h2>
+    <p class="lede">A nagyterem többféle elrendezésben, és a hozzá tartozó helyiségek. A képeket nagyban is megnyithatod.</p>
+    <div class="photo-gallery">
+      <figure><a href="assets/photos/szekkor-1600.webp" target="_blank" rel="noopener" aria-label="Székekkel, körben – nagy kép, új lapon"><img src="assets/photos/szekkor-960.webp" srcset="assets/photos/szekkor-640.webp 640w, assets/photos/szekkor-960.webp 960w, assets/photos/szekkor-1600.webp 1600w" sizes="(max-width:620px) calc(100vw - 44px), (max-width:920px) 46vw, 540px" width="960" height="640" alt="Székek kör alakban az Ohana⁶ téglaboltozatos termében" loading="lazy" decoding="async"></a><figcaption>Székekkel, körben</figcaption></figure>
+      <figure><a href="assets/photos/babzsak-reszlet-1600.webp" target="_blank" rel="noopener" aria-label="Babzsákos elrendezés – nagy kép, új lapon"><img src="assets/photos/babzsak-reszlet-960.webp" srcset="assets/photos/babzsak-reszlet-640.webp 640w, assets/photos/babzsak-reszlet-960.webp 960w, assets/photos/babzsak-reszlet-1600.webp 1600w" sizes="(max-width:620px) calc(100vw - 44px), (max-width:920px) 46vw, 540px" width="960" height="640" alt="Babzsákok és meleg fények a boltívek alatt" loading="lazy" decoding="async"></a><figcaption>Babzsákos elrendezés</figcaption></figure>
+      <figure><a href="assets/photos/minikonyha-1600.webp" target="_blank" rel="noopener" aria-label="Minikonyha – nagy kép, új lapon"><img src="assets/photos/minikonyha-960.webp" srcset="assets/photos/minikonyha-640.webp 640w, assets/photos/minikonyha-960.webp 960w, assets/photos/minikonyha-1600.webp 1600w" sizes="(max-width:620px) calc(100vw - 44px), (max-width:920px) 46vw, 540px" width="960" height="640" alt="Az Ohana⁶ minikonyhája pulttal és mosogatóval" loading="lazy" decoding="async"></a><figcaption>Minikonyha</figcaption></figure>
+      <figure><a href="assets/photos/mosdo-1600.webp" target="_blank" rel="noopener" aria-label="Mosdó és zuhany – nagy kép, új lapon"><img src="assets/photos/mosdo-960.webp" srcset="assets/photos/mosdo-640.webp 640w, assets/photos/mosdo-960.webp 960w, assets/photos/mosdo-1600.webp 1600w" sizes="(max-width:620px) calc(100vw - 44px), (max-width:920px) 46vw, 540px" width="960" height="640" alt="Mosdókagyló, tükör és üvegfalú zuhany" loading="lazy" decoding="async"></a><figcaption>Mosdó és zuhany</figcaption></figure>
+      <figure><a href="assets/photos/lepcso-1600.webp" target="_blank" rel="noopener" aria-label="Bejárat, lépcsőn át – nagy kép, új lapon"><img src="assets/photos/lepcso-960.webp" srcset="assets/photos/lepcso-640.webp 640w, assets/photos/lepcso-960.webp 960w, assets/photos/lepcso-1600.webp 1600w" sizes="(max-width:620px) calc(100vw - 44px), (max-width:920px) 46vw, 540px" width="960" height="640" alt="A szuterénbe vezető lépcső az utcai ajtó felé nézve" loading="lazy" decoding="async"></a><figcaption>Bejárat, lépcsőn át</figcaption></figure>
+      <figure><a href="assets/photos/terem-ures-1600.webp" target="_blank" rel="noopener" aria-label="Szabad tér a programodhoz – nagy kép, új lapon"><img src="assets/photos/terem-ures-960.webp" srcset="assets/photos/terem-ures-640.webp 640w, assets/photos/terem-ures-960.webp 960w, assets/photos/terem-ures-1600.webp 1600w" sizes="(max-width:620px) calc(100vw - 44px), (max-width:920px) 46vw, 540px" width="960" height="657" alt="A nagyterem bútorok nélkül, alacsony ablakokkal" loading="lazy" decoding="async"></a><figcaption>Szabad tér a programodhoz</figcaption></figure>
+    </div>
+    <h3 class="program-heading">Minek adunk teret</h3>
+    <div class="palette"><span>egyéni terápia</span><span>coaching</span><span>pszichodráma</span><span>rendszerállítás</span><span>önismereti csoport</span><span>integrál flow</span><span>jóga</span><span>meditáció</span><span>mozgás</span><span>hangfürdő</span><span>masszázs</span><span>gyógytorna</span><span>tréning</span><span>előadás</span><span>workshop</span><span>tanfolyam</span><span>coworking</span><span>könyvbemutató</span><span>kiállítás</span><span>privát rendezvény</span><span>dob- és énekkör</span><span>jam session</span></div>
+    <p class="muted" style="margin-top:20px">…és ami még eszedbe juthat. Gyere el egy ingyenes terepszemlére, és nézd meg, hogyan illik a tér a programodhoz.</p>
+  </div>
+</section>
+
+<!-- ===== Terepszemle ===== -->
+
+
+<!-- ===== Bizalom / testimonials ===== -->
+<section class="section" id="bizalom">
+  <div class="wrap">
+    <div class="ucenter"><h2>Előbb nézz körül.<br>Aztán dönts.</h2>
+    <p class="lede">Gyere el, nézd meg a teret élőben, és mesélj a programodról. Megmutatjuk az elrendezéseket és a felszerelést, hogy tudd, mire számíthatsz.</p></div>
+    <div class="facts">
+      <b><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg>95 m² családias tér</b>
+      <b><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg>4 fix sáv 06:30–22:00</b>
+      <b><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg>Akár 31 fő</b>
+      <b><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg>Lemondás az ÁSZF szerint</b>
+    </div>
+    <p class="muted ucenter" style="max-width:56ch;margin:24px auto 0">Az Ohana⁶ egy családi közösségi tér. Az a célunk, hogy a csoportoddal otthonosan érkezz, és legyen helye annak, amit együtt hoztok létre.</p>
+    <div class="btn-row" style="justify-content:center;border-top:0;margin-top:20px;padding-top:0">
+      <a class="btn btn-primary" href="https://wa.me/36705306514?text=Szia%21%20K%C3%A9rn%C3%A9k%20egy%20ingyenes%20terepszemle%20id%C5%91pontot.">Terepszemlét kérek</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GYIK ===== -->
+<section class="section" id="gyik" style="background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="wrap">
+    <div class="ucenter"><h2>Gyakori kérdések</h2></div>
+    <div class="faq">
+      <details><summary>Mi van, ha nem nyílik a kód?<span class="plus" aria-hidden="true"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary><div class="a">Írd meg nekünk azonnali „Nem nyílik?" üzenettel — 10 percen belül egy mesterkulcs vagy egy új, érvényes kód elérhető. A kulcs továbbra is nyit, ha a kódblokk nem működik.</div></details>
+      <details><summary>Van mosdó?<span class="plus" aria-hidden="true"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary><div class="a">Igen, a szuterénben van. A berendezési listában szereplő alap-higiéniai eszközök (mosószappan, papír) a tér árában értendők.</div></details>
+      <details><summary>Hol tudok parkolni?<span class="plus" aria-hidden="true"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary><div class="a">A szuterén bejárata mellett van nyilvános parkolás; a pontos pontot a terepszemlére és a foglalás után is elküldjük.</div></details>
+      <details><summary>Milyen eszközök vannak?<span class="plus" aria-hidden="true"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary><div class="a">15 kinyitható szék, 15 babzsák, Bluetooth-hangszóró és állítható, meleg LED-világítás áll rendelkezésre. Ha a programodhoz külön eszköz kell, egyeztess velünk előre, vagy hozd a sajátodat.</div></details>
+      <details><summary>Hogyan mondhatom le vagy módosíthatom a foglalást?<span class="plus" aria-hidden="true"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary><div class="a"><p>Lemondást írásban az <a href="mailto:i@tomihermann.com">i@tomihermann.com</a> címen vagy <a href="https://wa.me/36705306514">WhatsAppon</a> kérhetsz; a visszaigazolást is írásban küldjük. Egyedi foglalás vagy teljes bérlet lemondásakor a határidőket egyedi foglalásnál a lefoglalt időponttól, teljes bérletnél az első alkalom időpontjától számítjuk vissza. A befizetett összeg <strong>100%-a jár vissza legalább 21 naptári nappal előtte</strong>, <strong>50%-a 15–20 nappal előtte</strong>; <strong>0–14 nappal előtte nincs visszatérítés</strong>. Az egyedi foglalás vagy a teljes bérlet időpontja legalább 21 naptári nappal az így meghatározott kezdő időpont előtt módosítható. Megkezdett bérlet már nem mondható le; hátralévő alkalmai csak áthelyezhetők az alábbi feltételekkel.</p><p>A kedvezményes bérlet egyes alkalmai nem mondhatók le, és díjuk nem téríthető vissza. Áthelyezés legalább 15 nappal az alkalom előtt, írásban e-mailben kérhető, a szabad időpontok függvényében. 14 napon belül az alkalom felhasználtnak számít, és nem helyezhető át.</p><p><a href="https://tomihermann.notion.site/p/Ohana-Foglal-s-SZF-3de285bb7baa8003bce5d428a3824196?pvs=24" target="_blank" rel="noopener">Részletes feltételek az ÁSZF-ben ↗</a></p></div></details>
+      <details><summary>Hányan férünk el?<span class="plus" aria-hidden="true"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary><div class="a">Workshop: 15 résztvevő + foglalkozásvezető · jóga: 15 résztvevő + oktató · kör: legfeljebb 21 fő · előadás: legfeljebb 31 fő.</div></details>
+      <details><summary>Mit biztosít a tér?<span class="plus" aria-hidden="true"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary><div class="a">Gyors, stabil wifi · Bluetooth-hangszóró · minikonyha (kávé, tea, 2 hűtőszekrény) · tároló-öltöző · 2 zuhannyal felszerelt mosdó · 15 kinyitható szék és 15 babzsák · állítható, meleg LED-fények · klíma és radiátor.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Házirend ===== -->
+<section class="section" id="hazirend" aria-labelledby="hazirend-title">
+  <div class="wrap house-rules">
+    <div>
+      <h2 id="hazirend-title">Házirend</h2>
+      <p class="lede">Úgy hagyd itt a teret, ahogyan te is szívesen megérkeznél.</p>
+    </div>
+    <ul class="rules-list">
+      <li><strong>Rend a program után.</strong> Pakolj el és hagyd tisztán a használt helyiségeket. A szükséges extra takarítás külön díjjal jár.</li>
+      <li><strong>A teljes program férjen a sávba.</strong> A készülődés és az elpakolás is a foglalt idő része. A túlfutás külön díjjal jár.</li>
+      <li><strong>A szőnyeges részen cipő nélkül.</strong> Ezzel közösen vigyázunk a tisztaságra.</li>
+      <li><strong>Dohányozni tilos.</strong> Gyertyát és füstölőt csak tálcán használj, és távozás előtt minden esetben oltsd el.</li>
+      <li><strong>Alkohol és drog nélkül.</strong> Ezek használata a térben nem megengedett.</li>
+      <li><strong>Figyeljünk a szomszédokra.</strong> Hangosabb foglalkozás alatt tartsd zárva az ajtókat és az ablakokat.</li>
+      <li><strong>Téli fűtés.</strong> A fűtést legfeljebb 26 °C-ra állítsd.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== Final CTA ===== -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="ctaband">
+      <h2>Találkozzunk<br>az Ohana⁶-ban.</h2>
+      <p>Foglalj most — vagy nézz meg minket élőben egy ingyenes terepszemlére. A kulcs a telefonodban.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="/foglalas/"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Foglalj időpontot</a>
+        <a class="btn btn-ghost" href="https://wa.me/36705306514?text=Szia%21%20K%C3%A9rn%C3%A9k%20egy%20ingyenes%20terepszemle%20id%C5%91pontot.">Ingyenes terepszemle</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand"><img class="brand-mark" src="assets/ohana-house-light.png" alt="Ohana⁶ ház">Ohana⁶</div>
+        <p>Egy családias tér a csoportjaidnak. 95 m² Budapesten jógához, terápiához, közös gyakorláshoz és workshopokhoz.</p>
+        <a class="wa-pill" href="https://wa.me/36705306514"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5c0 9 6 15 15 15l1-4-5-2-2 2c-2-1-4-3-5-5l2-2-2-5z"/></svg>+36 70 530 6514</a>
+      </div>
+      <div>
+        <h4>Látogass el</h4>
+        <p style="margin:0">1089 Budapest, Benyovszky Móric u. 6.<br>Szuterén — 12 perc a belvárostól</p>
+        <h4 style="margin-top:20px">Nyitvatartás</h4>
+        <p style="margin:0">Foglalható sávok 06:30–22:00 között,<br>minden nap</p>
+      </div>
+      <div>
+        <h4>Információ</h4>
+        <a href="#kinek">Kinek?</a>
+        <a href="#arak">Árak</a>
+        <a href="#gyik">GYIK</a>
+        <a href="https://wa.me/36705306514?text=Szia%21%20Az%20adatkezel%C3%A9si%20t%C3%A1j%C3%A9koztat%C3%B3t%20szeretn%C3%A9m%20elk%C3%A9rni." aria-label="Adatkezelési tájékoztató kérése WhatsAppon" title="Adatkezelési tájékoztató kérése WhatsAppon">Adatkezelésről kérdezek</a>
+        <a href="#hazirend">Házirend</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="yr">2026</span> Ohana⁶</span>
+      <span>Ohana⁶ — „Ohana, az a család."</span>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ===== Sticky mobile CTA ===== -->
+<div class="sticky-cta">
+  <a class="btn btn-primary" href="/foglalas/">Foglalj</a>
+  <a class="btn btn-ghost" href="https://wa.me/36705306514?text=Szia%21%20K%C3%A9rn%C3%A9k%20egy%20ingyenes%20terepszemle%20id%C5%91pontot.">Terepszemle</a>
+</div>
+
+<dialog class="photo-viewer" aria-labelledby="photo-title">
+  <div class="photo-toolbar"><p id="photo-title"></p><button type="button" class="photo-close" aria-label="Fotó bezárása">Bezárás <span aria-hidden="true">×</span></button></div>
+  <div class="photo-stage"><img alt=""><p class="photo-error" hidden>A kép nem tölthető be. <a target="_blank" rel="noopener">Megnyitás új lapon</a></p></div>
+  <div class="photo-controls"><button type="button" class="photo-prev" aria-label="Előző fotó">Előző</button><p class="photo-count" aria-live="polite"></p><button type="button" class="photo-next" aria-label="Következő fotó">Következő</button></div>
+</dialog>
+<script src="/booking-mode.js?v=20261018-feedback" defer></script>
+<script src="venue.js" defer></script>
+<script>
+(function(){
+  var d=document; d.documentElement.classList.add('js');
+  var y=d.getElementById('yr'); if(y) y.textContent=new Date().getFullYear();
+  var tog=d.querySelector('.nav-toggle'), menu=d.getElementById('menu');
+  if(tog&&menu){
+    function closeMenu(returnFocus){
+      menu.classList.remove('open');
+      tog.setAttribute('aria-expanded','false');
+      tog.setAttribute('aria-label','Menü');
+      if(returnFocus) tog.focus();
+    }
+    tog.addEventListener('click',function(){
+      var open=menu.classList.toggle('open');
+      tog.setAttribute('aria-expanded',String(open));
+      tog.setAttribute('aria-label',open?'Menü bezárása':'Menü');
+    });
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click',function(){
+        closeMenu(false);
+        var href=a.getAttribute('href');
+        if(href && href.charAt(0)==='#'){
+          var section=d.getElementById(href.slice(1));
+          if(section){ section.setAttribute('tabindex','-1'); section.focus({preventScroll:true}); }
+        }
+      });
+    });
+    d.addEventListener('keydown',function(e){
+      if(e.key==='Escape' && menu.classList.contains('open')) closeMenu(true);
+    });
+    d.addEventListener('click',function(e){
+      if(!menu.contains(e.target) && !tog.contains(e.target)) closeMenu(false);
+    });
+    d.querySelector('header.nav').addEventListener('focusout',function(e){
+      if(e.relatedTarget && !this.contains(e.relatedTarget)) closeMenu(false);
+    });
+    window.matchMedia('(min-width:801px)').addEventListener('change',function(e){
+      if(e.matches) closeMenu(false);
+    });
+  }
+})();
+</script>
+
+
+</body>
+</html>

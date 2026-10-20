@@ -1,0 +1,444 @@
+{
+  "snapshot_date": "2026-10-20",
+  "description": "Public UI-only snapshot; generated preview files are separate from unchanged source UI. No private Git history. Hashes are the handoff baseline, not a deploy manifest.",
+  "files": [
+    {
+      "path": ".gitignore",
+      "sha256": "8b354e39e34cc222c955c6eb2879f6f3469a91e060845766b266044110745ea8",
+      "bytes": 143,
+      "original_ui_path": null
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "773bbc8f4b5c32b192821739c0a2a7aa36f33265d7882b9502dd3274c860c719",
+      "bytes": 1300,
+      "original_ui_path": null
+    },
+    {
+      "path": "README.md",
+      "sha256": "7eacec8dc06efa69be644a0cede92ef513cc54c606735139b05733c948415560",
+      "bytes": 5480,
+      "original_ui_path": null
+    },
+    {
+      "path": "package.json",
+      "sha256": "55a2e3dc113757e8107813dbb4e257c6b5bce88aac0ce5d5cafa9ae2b55f33d9",
+      "bytes": 320,
+      "original_ui_path": null
+    },
+    {
+      "path": "preview/demo.css",
+      "sha256": "9f5eb824a09b1bb3a4b5bb2f0197c351aaa66c5b77e25b0dd34742ed2e18fe2d",
+      "bytes": 1159,
+      "original_ui_path": null
+    },
+    {
+      "path": "preview/fonts.css",
+      "sha256": "f2cfcec581dbaab0200ae96cff7524cd4cc6ec13884b719b7413726e051f67dd",
+      "bytes": 1438,
+      "original_ui_path": null
+    },
+    {
+      "path": "preview/isolation.test.mjs",
+      "sha256": "74081f7fb94c620a1d7f42f27f7d327cc75edae0d8866a6b83e3ffa0b2c39ad2",
+      "bytes": 7191,
+      "original_ui_path": null
+    },
+    {
+      "path": "preview/mock-api.js",
+      "sha256": "a78898bdf2728eac78f8c221135e601687b6ee50107e4d6dba9510c22afa56fc",
+      "bytes": 8183,
+      "original_ui_path": null
+    },
+    {
+      "path": "preview/mock-checkout.html",
+      "sha256": "151ac6d02b5359733c565f29b5d023ddde92483111674d47c9cb4ba5afa28ad7",
+      "bytes": 1554,
+      "original_ui_path": null
+    },
+    {
+      "path": "preview/server.mjs",
+      "sha256": "fd07fc456e3927ba9be27a7239675da18948be30b2708007d1d9b27d6a2fab33",
+      "bytes": 5326,
+      "original_ui_path": null
+    },
+    {
+      "path": "previews/base.css",
+      "sha256": "3e98b73ca36894d6e2eaa869c7dd867d9a41590cf8e2e18a2c1deaab45f48225",
+      "bytes": 7637,
+      "original_ui_path": null
+    },
+    {
+      "path": "previews/booking-admin.html",
+      "sha256": "22cadb6569ea98879b98198bc5eeeae68b901d93bc63f6930552744acb79f275",
+      "bytes": 3977,
+      "original_ui_path": null
+    },
+    {
+      "path": "previews/booking-admin.js",
+      "sha256": "e58ebf0dd03b5cba297f3047a6d38648e8d0d692284dfd7977393d2676ff7f7c",
+      "bytes": 4866,
+      "original_ui_path": null
+    },
+    {
+      "path": "previews/crm-login.html",
+      "sha256": "116a786e657c396fcf4758bd12c99305b1668cbcc681ab6d47bbd9ebd278b336",
+      "bytes": 1876,
+      "original_ui_path": null
+    },
+    {
+      "path": "previews/crm.html",
+      "sha256": "4d356f602f8f89292b450b0a65d5f28b2c11f068efeaa84db1be779c3acc9f30",
+      "bytes": 3194,
+      "original_ui_path": null
+    },
+    {
+      "path": "previews/crm.js",
+      "sha256": "74d290d12c62342b82a09ec6b8b7cdc6ee991dfc67069039c9980c8b2b329b1b",
+      "bytes": 3472,
+      "original_ui_path": null
+    },
+    {
+      "path": "themes/README.md",
+      "sha256": "1b8c2f0a692667c49c412696aa066db59b0b5bea408f36e9cf22536a9fdc9bbb",
+      "bytes": 2254,
+      "original_ui_path": null
+    },
+    {
+      "path": "themes/crm/assets/favicon.png",
+      "sha256": "b5eec3527b8c99e219c42fb9a90cc4d67713bdf6c10db113fe0df80020bee739",
+      "bytes": 7180,
+      "original_ui_path": "ops/crm/theme/client/custom/ohana/assets/favicon.png"
+    },
+    {
+      "path": "themes/crm/assets/login-room.webp",
+      "sha256": "524603632de7736df360a86dfe4eab7a01acee92145a52282648c37def4c0c03",
+      "bytes": 91676,
+      "original_ui_path": "ops/crm/theme/client/custom/ohana/assets/login-room.webp"
+    },
+    {
+      "path": "themes/crm/assets/ohana-house-dark.png",
+      "sha256": "47ca6109d3e78cb030f3e1a70763b381775ffce025618a299fa8d9656a8931b7",
+      "bytes": 39078,
+      "original_ui_path": "ops/crm/theme/client/custom/ohana/assets/ohana-house-dark.png"
+    },
+    {
+      "path": "themes/crm/assets/ohana-wordmark-20261018.svg",
+      "sha256": "ba0599f992c9264a7c987d105d439542325cd4fc72753400514b6ccc5c15a012",
+      "bytes": 52648,
+      "original_ui_path": "ops/crm/theme/client/custom/ohana/assets/ohana-wordmark-20261018.svg"
+    },
+    {
+      "path": "themes/crm/assets/ohana-wordmark.svg",
+      "sha256": "ba0599f992c9264a7c987d105d439542325cd4fc72753400514b6ccc5c15a012",
+      "bytes": 52648,
+      "original_ui_path": "ops/crm/theme/client/custom/ohana/assets/ohana-wordmark.svg"
+    },
+    {
+      "path": "themes/crm/fonts/Fraunces-OFL.txt",
+      "sha256": "bdf4c22802eaf804f998195871c6b8938aac2ac14b2d78a8bd66a6f1eced833b",
+      "bytes": 4391,
+      "original_ui_path": "ops/crm/theme/client/custom/ohana/fonts/Fraunces-OFL.txt"
+    },
+    {
+      "path": "themes/crm/fonts/Fraunces-latin-ext.woff2",
+      "sha256": "f120089b9440f3e35a980a2137347b1851ad46ee4b8ad5c63b6c07e053fa40e2",
+      "bytes": 59540,
+      "original_ui_path": "ops/crm/theme/client/custom/ohana/fonts/Fraunces-latin-ext.woff2"
+    },
+    {
+      "path": "themes/crm/fonts/Fraunces-latin.woff2",
+      "sha256": "48282a415ec22e31beaf0a0666e6fae0c8cbddcd0b1f6e729f27c3ade8a64e43",
+      "bytes": 67388,
+      "original_ui_path": "ops/crm/theme/client/custom/ohana/fonts/Fraunces-latin.woff2"
+    },
+    {
+      "path": "themes/crm/fonts/NunitoSans-OFL.txt",
+      "sha256": "efbb0c9e864cef973982d9a17567e6be5c3d1759695574586f3f18c7ecca064b",
+      "bytes": 4393,
+      "original_ui_path": "ops/crm/theme/client/custom/ohana/fonts/NunitoSans-OFL.txt"
+    },
+    {
+      "path": "themes/crm/fonts/NunitoSans-latin-ext.woff2",
+      "sha256": "2e164aa29c01fb0886b5b97cb392f24a400c17eab75a064272c2c5efe2b01e38",
+      "bytes": 27880,
+      "original_ui_path": "ops/crm/theme/client/custom/ohana/fonts/NunitoSans-latin-ext.woff2"
+    },
+    {
+      "path": "themes/crm/fonts/NunitoSans-latin.woff2",
+      "sha256": "39184f4d011106f5bfbe3813d3a8c3673663f04a45a9c9f55b1ed15f4d5b1cc9",
+      "bytes": 30948,
+      "original_ui_path": "ops/crm/theme/client/custom/ohana/fonts/NunitoSans-latin.woff2"
+    },
+    {
+      "path": "themes/crm/ohana.css",
+      "sha256": "cb92fd9282488502330b547e833225c7d3717f0e34d1edff46932e4934c6af1d",
+      "bytes": 6524,
+      "original_ui_path": "ops/crm/theme/client/custom/ohana/ohana.css"
+    },
+    {
+      "path": "themes/crm/tokens.css",
+      "sha256": "62469d25c9d8c300d00d0dd88137e002c165daae5c4350ea1f7063258079ea1c",
+      "bytes": 6012,
+      "original_ui_path": "ops/crm/theme/client/custom/ohana/tokens.css"
+    },
+    {
+      "path": "themes/librebooking/interface.css",
+      "sha256": "6013eeaaf8f4a541d7c80a2759135a4065dfe7db6c1ba4246666462100bd2d7c",
+      "bytes": 15397,
+      "original_ui_path": "website/librebooking/interface.css"
+    },
+    {
+      "path": "themes/librebooking/interface.js",
+      "sha256": "c6c87defda5b07cb0a34f5ea2517cb34ad5a926f1a114f683fab1a6da74eb767",
+      "bytes": 15844,
+      "original_ui_path": "website/librebooking/interface.js"
+    },
+    {
+      "path": "website/assets/apple-touch-icon.png",
+      "sha256": "0ea167358c547bac6dc9eb1c498db34411e209d8a30a48b93a454300ba20c18a",
+      "bytes": 47287,
+      "original_ui_path": "website/assets/apple-touch-icon.png"
+    },
+    {
+      "path": "website/assets/favicon-64.png",
+      "sha256": "b5eec3527b8c99e219c42fb9a90cc4d67713bdf6c10db113fe0df80020bee739",
+      "bytes": 7180,
+      "original_ui_path": "website/assets/favicon-64.png"
+    },
+    {
+      "path": "website/assets/fonts/Fraunces-OFL.txt",
+      "sha256": "bdf4c22802eaf804f998195871c6b8938aac2ac14b2d78a8bd66a6f1eced833b",
+      "bytes": 4391,
+      "original_ui_path": null
+    },
+    {
+      "path": "website/assets/fonts/Fraunces-latin-ext.woff2",
+      "sha256": "f120089b9440f3e35a980a2137347b1851ad46ee4b8ad5c63b6c07e053fa40e2",
+      "bytes": 59540,
+      "original_ui_path": null
+    },
+    {
+      "path": "website/assets/fonts/Fraunces-latin.woff2",
+      "sha256": "48282a415ec22e31beaf0a0666e6fae0c8cbddcd0b1f6e729f27c3ade8a64e43",
+      "bytes": 67388,
+      "original_ui_path": null
+    },
+    {
+      "path": "website/assets/fonts/NunitoSans-OFL.txt",
+      "sha256": "efbb0c9e864cef973982d9a17567e6be5c3d1759695574586f3f18c7ecca064b",
+      "bytes": 4393,
+      "original_ui_path": null
+    },
+    {
+      "path": "website/assets/fonts/NunitoSans-latin-ext.woff2",
+      "sha256": "2e164aa29c01fb0886b5b97cb392f24a400c17eab75a064272c2c5efe2b01e38",
+      "bytes": 27880,
+      "original_ui_path": null
+    },
+    {
+      "path": "website/assets/fonts/NunitoSans-latin.woff2",
+      "sha256": "39184f4d011106f5bfbe3813d3a8c3673663f04a45a9c9f55b1ed15f4d5b1cc9",
+      "bytes": 30948,
+      "original_ui_path": null
+    },
+    {
+      "path": "website/assets/ohana-house-dark.png",
+      "sha256": "47ca6109d3e78cb030f3e1a70763b381775ffce025618a299fa8d9656a8931b7",
+      "bytes": 39078,
+      "original_ui_path": "website/assets/ohana-house-dark.png"
+    },
+    {
+      "path": "website/assets/ohana-house-light.png",
+      "sha256": "ae6e82ef10ecf71d989c94f84d39c1a2c0cc5810bdaf6611d0375f4080af5a6b",
+      "bytes": 61233,
+      "original_ui_path": "website/assets/ohana-house-light.png"
+    },
+    {
+      "path": "website/assets/photos/babzsak-reszlet-1600.webp",
+      "sha256": "d3c9bc3b199a1fd647ee6224cba4e87de34eaf5dd84fa573fadfbf9eb015155a",
+      "bytes": 185124,
+      "original_ui_path": "website/assets/photos/babzsak-reszlet-1600.webp"
+    },
+    {
+      "path": "website/assets/photos/babzsak-reszlet-640.webp",
+      "sha256": "694d9057f1c22dc62a97802e29f16cd94153d315c4fa1ca684c0fb475b36ef0a",
+      "bytes": 42388,
+      "original_ui_path": "website/assets/photos/babzsak-reszlet-640.webp"
+    },
+    {
+      "path": "website/assets/photos/babzsak-reszlet-960.webp",
+      "sha256": "da0e0698446876cc46160bc0035579046c6a94d8b5d728391e26a98201b0c4bc",
+      "bytes": 82114,
+      "original_ui_path": "website/assets/photos/babzsak-reszlet-960.webp"
+    },
+    {
+      "path": "website/assets/photos/lepcso-1600.webp",
+      "sha256": "ed154edc60b7515632259e15a53bff4d5ac8b7577dbc6d430275f7825f19042e",
+      "bytes": 190890,
+      "original_ui_path": "website/assets/photos/lepcso-1600.webp"
+    },
+    {
+      "path": "website/assets/photos/lepcso-640.webp",
+      "sha256": "28220a5145fd2873437cab4b2f2ed851e19cb154791e865833d72d0ea1fe1cae",
+      "bytes": 40616,
+      "original_ui_path": "website/assets/photos/lepcso-640.webp"
+    },
+    {
+      "path": "website/assets/photos/lepcso-960.webp",
+      "sha256": "a15427e64c19ec3a16ef5b4574290b429c18b0d426887da87b884d6137d53726",
+      "bytes": 79904,
+      "original_ui_path": "website/assets/photos/lepcso-960.webp"
+    },
+    {
+      "path": "website/assets/photos/minikonyha-1600.webp",
+      "sha256": "3d6986a927a97cbe2a1a4ed1f5a09b0809e7a695d5ee41bd607f1348a276bdc4",
+      "bytes": 173268,
+      "original_ui_path": "website/assets/photos/minikonyha-1600.webp"
+    },
+    {
+      "path": "website/assets/photos/minikonyha-640.webp",
+      "sha256": "5be7b076a71db79aac1b653c2556fd92a8113cd63c5072ebb3b78a9c58cf6712",
+      "bytes": 41386,
+      "original_ui_path": "website/assets/photos/minikonyha-640.webp"
+    },
+    {
+      "path": "website/assets/photos/minikonyha-960.webp",
+      "sha256": "f78324da3f79c136b13f39ee141d7045f17ba55419cd40d15fdfb7bf3c20f615",
+      "bytes": 78928,
+      "original_ui_path": "website/assets/photos/minikonyha-960.webp"
+    },
+    {
+      "path": "website/assets/photos/mosdo-1600.webp",
+      "sha256": "b646a731772b52dc65c80cf096f73be34c5b16bd2b50f940a50d3a615d1a141d",
+      "bytes": 65670,
+      "original_ui_path": "website/assets/photos/mosdo-1600.webp"
+    },
+    {
+      "path": "website/assets/photos/mosdo-640.webp",
+      "sha256": "1a9320d301e30d2fffa36e044fe364e6f712593957624cb6889283ebb910437e",
+      "bytes": 17430,
+      "original_ui_path": "website/assets/photos/mosdo-640.webp"
+    },
+    {
+      "path": "website/assets/photos/mosdo-960.webp",
+      "sha256": "4410ef899c8500c446bd6e5821819b8e5be266edcbaf26fe2f6cf047e9ac3c0d",
+      "bytes": 30552,
+      "original_ui_path": "website/assets/photos/mosdo-960.webp"
+    },
+    {
+      "path": "website/assets/photos/szekkor-1600.webp",
+      "sha256": "3286d91f6e8ad8740c950bbd8da69a5793f9c0c8202c59691d927633a8165bb7",
+      "bytes": 208998,
+      "original_ui_path": "website/assets/photos/szekkor-1600.webp"
+    },
+    {
+      "path": "website/assets/photos/szekkor-640.webp",
+      "sha256": "eb4530ec51bb4e6633513100086f48fd4b3a04ea4688d34bcab9539c12471f05",
+      "bytes": 47562,
+      "original_ui_path": "website/assets/photos/szekkor-640.webp"
+    },
+    {
+      "path": "website/assets/photos/szekkor-960.webp",
+      "sha256": "524603632de7736df360a86dfe4eab7a01acee92145a52282648c37def4c0c03",
+      "bytes": 91676,
+      "original_ui_path": "website/assets/photos/szekkor-960.webp"
+    },
+    {
+      "path": "website/assets/photos/terem-babzsakok-1600.webp",
+      "sha256": "4c8982b8468f60f87a6063ff4e4f5f5dee1a234748d94ee94f64d386add996c6",
+      "bytes": 193148,
+      "original_ui_path": "website/assets/photos/terem-babzsakok-1600.webp"
+    },
+    {
+      "path": "website/assets/photos/terem-babzsakok-2400.webp",
+      "sha256": "f52a21db32971b7240efaaf6f9a1f3c1ec13311cc9f2a0b77debe4b43299d0f5",
+      "bytes": 444720,
+      "original_ui_path": "website/assets/photos/terem-babzsakok-2400.webp"
+    },
+    {
+      "path": "website/assets/photos/terem-babzsakok-640.webp",
+      "sha256": "46149379db49d4d8db336a9c294884ca95791e4e18defd1773e6680a3887bdd0",
+      "bytes": 43490,
+      "original_ui_path": "website/assets/photos/terem-babzsakok-640.webp"
+    },
+    {
+      "path": "website/assets/photos/terem-babzsakok-960.webp",
+      "sha256": "c49e54da770821c704100f7a43cee3aa8ef79558ed12489eb99ffc796e0add03",
+      "bytes": 84078,
+      "original_ui_path": "website/assets/photos/terem-babzsakok-960.webp"
+    },
+    {
+      "path": "website/assets/photos/terem-ures-1600.webp",
+      "sha256": "aad15ceafd10c698ed153eb62c0b2441dc94f8d3f78a20ae3e858db307bad098",
+      "bytes": 237122,
+      "original_ui_path": "website/assets/photos/terem-ures-1600.webp"
+    },
+    {
+      "path": "website/assets/photos/terem-ures-640.webp",
+      "sha256": "6c8a002e13a8a9b6c1129c6668f2766140bed196b5f2d5385fa88249ae1a4ad6",
+      "bytes": 45902,
+      "original_ui_path": "website/assets/photos/terem-ures-640.webp"
+    },
+    {
+      "path": "website/assets/photos/terem-ures-960.webp",
+      "sha256": "2a385e1067364779d1c50601a6df15f6c2da511ffa659353e3e076bc111ff41f",
+      "bytes": 96004,
+      "original_ui_path": "website/assets/photos/terem-ures-960.webp"
+    },
+    {
+      "path": "website/booking-mode.js",
+      "sha256": "7efd9b893d171b9f7609063a050e291570910a32481a9396869011669991b879",
+      "bytes": 5901,
+      "original_ui_path": "website/booking-mode.js"
+    },
+    {
+      "path": "website/foglalas/booking.css",
+      "sha256": "a4f28d9b1ef41d05f3bafd85950f432e910dd073e1e423fdcdd9c59acced1ef1",
+      "bytes": 9693,
+      "original_ui_path": "website/foglalas/booking.css"
+    },
+    {
+      "path": "website/foglalas/booking.js",
+      "sha256": "7bb2b0644912c7e268c2b8cc7e55f2c9aae269fb0bb5c1fd53ae160b91b1c830",
+      "bytes": 25202,
+      "original_ui_path": "website/foglalas/booking.js"
+    },
+    {
+      "path": "website/foglalas/index.html",
+      "sha256": "4edf101fc705a163b75c371e04e3224e1d817f9d0dab7c2ec0a6d09573677387",
+      "bytes": 23322,
+      "original_ui_path": "website/foglalas/index.html"
+    },
+    {
+      "path": "website/index.html",
+      "sha256": "656428b36e329a6fc006c5db5757bd08316a3056742861f667488598ab279892",
+      "bytes": 65809,
+      "original_ui_path": "website/index.html"
+    },
+    {
+      "path": "website/og-cover.jpg",
+      "sha256": "14b263ba8cff922ef5a8fe7424fd291b2086b4f0f402fbd7c9177e39783c5ad3",
+      "bytes": 183816,
+      "original_ui_path": "website/og-cover.jpg"
+    },
+    {
+      "path": "website/tokens.css",
+      "sha256": "c5daf2eb4d04dc5c3edfc97a039e09ec5586590e913c8beefe4b567b4fb5df96",
+      "bytes": 1320,
+      "original_ui_path": "website/tokens.css"
+    },
+    {
+      "path": "website/venue.css",
+      "sha256": "7243275443e3a96c2d4ba64d3d6ab66d2b4926db78af9e53c8dbe42f0c47099f",
+      "bytes": 22600,
+      "original_ui_path": "website/venue.css"
+    },
+    {
+      "path": "website/venue.js",
+      "sha256": "bb8a5a0e7ebc4effabcffc4d3d68498a28cd950aae5b671d1833227bbb1390e0",
+      "bytes": 2818,
+      "original_ui_path": "website/venue.js"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+node_modules/
+.DS_Store
+.env
+.env.*
+!.env.example
+*.log
+*.pem
+*.key
+*.p12
+*.sqlite*
+.idea/
+.vscode/
+coverage/
+playwright-report/
+test-results/

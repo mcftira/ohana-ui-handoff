@@ -1,0 +1,12 @@
+{
+  "name": "ohana-ui-handoff",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "UI-only Ohana design handoff with synthetic local booking previews.",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node preview/server.mjs",
+    "test": "node --test preview/*.test.mjs"
+  }
+}

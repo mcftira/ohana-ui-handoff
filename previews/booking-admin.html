@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Ohana⁶ · foglalási admin — UI-minta</title>
+  <link rel="stylesheet" href="/preview/fonts.css">
+  <link rel="stylesheet" href="/previews/base.css">
+  <link rel="stylesheet" href="/themes/librebooking/interface.css">
+  <script src="/previews/booking-admin.js" defer></script>
+</head>
+<body>
+  <aside class="preview-note"><p><strong>UI-minta.</strong> Kitalált foglalások; nincs belépés vagy mentés. Nem a teljes LibreBooking alkalmazás.</p><nav aria-label="Előnézetek"><a href="/">Weboldal</a><a href="/foglalas/">Vendégfoglalás</a><a href="/previews/crm.html">CRM-minta</a></nav></aside>
+  <div class="d-flex align-items-center gap-2">
+    <a class="navbar-brand" href="/previews/booking-admin.html" aria-label="Ohana⁶ — foglalási UI-minta"></a>
+    <div class="border-start"><h5><a href="/previews/booking-admin.html">Ohana⁶</a></h5></div>
+    <a class="ohana-home" href="/">← Ohana főoldal</a>
+  </div>
+  <nav class="navbar" aria-label="Foglalás navigáció"><a class="nav-link" href="/previews/booking-admin.html" aria-current="page">Naptár</a><a class="nav-link" href="/previews/crm.html">Kapcsolatok</a><a class="nav-link" href="/foglalas/">Vendégfoglalás ↗</a></nav>
+  <main id="main">
+    <section id="page-calendar" aria-labelledby="calendar-heading">
+      <div class="ohana-page-heading"><h1 id="calendar-heading">A terem naptára</h1><p>A mintafoglalás részleteit a színes sávra kattintva nyithatod meg.</p><a class="ohana-guest-link" href="/foglalas/">Vendégfoglalás ↗</a></div>
+      <ul class="ohana-slot-legend" aria-label="Sávok színei"><li class="ohana-slot-morning">Reggel</li><li class="ohana-slot-office">Office Hours</li><li class="ohana-slot-evening">Este</li><li class="ohana-slot-day">Egész nap</li></ul>
+      <p class="ohana-calendar-status" role="status">Rögzített mintahónap — 2026. október. Minden megjelenített adat kitalált.</p>
+      <div id="calendar" class="fc calendar-shell">
+        <div class="fc-header-toolbar fc-toolbar">
+          <div class="fc-toolbar-chunk"><button class="fc-button" type="button" disabled aria-label="Előző hónap — a minta egy hónapot tartalmaz">←</button><button class="fc-button" type="button" disabled aria-label="Következő hónap — a minta egy hónapot tartalmaz">→</button><button class="fc-button" type="button" disabled>Ma</button></div>
+          <div class="fc-toolbar-chunk"><h2 class="fc-toolbar-title">2026. október</h2></div>
+          <div class="fc-toolbar-chunk" aria-label="Naptárnézet"><button id="view-month" class="fc-button fc-button-active" type="button" aria-pressed="true">Hónap</button><button id="view-list" class="fc-button" type="button" aria-pressed="false">Lista</button></div>
+        </div>
+        <div id="month-view" class="fc-daygrid demo-calendar-grid" aria-label="2026. október, kitalált foglalások"></div>
+        <div id="list-view" class="demo-list" hidden></div>
+      </div>
+      <details class="ohana-calendar-details"><summary>További beállítások</summary><p>A szűrők, naptár-előfizetés és a részletes időrács a valódi alkalmazás részei. Ez az előnézet csak a megjelenés szerkesztésére szolgál.</p></details>
+    </section>
+  </main>
+  <footer class="demo-footer">Ohana⁶ · Bemutató adatok · Szerkeszthető stílus: <code>themes/librebooking/interface.css</code></footer>
+  <dialog id="booking-dialog" aria-labelledby="booking-title"><p class="demo-label">Kitalált foglalás · csak UI-minta</p><h2 id="booking-title"></h2><dl id="booking-details"></dl><p>A valódi alkalmazásban itt nyílik meg a meglévő foglalás űrlapja. Ez az előnézet nem tárol adatot.</p><button class="btn btn-primary" id="close-booking" type="button">Bezárás</button></dialog>
+</body>
+</html>

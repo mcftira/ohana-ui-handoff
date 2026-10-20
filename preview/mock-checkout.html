@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Szimulált fizetés — Ohana⁶ UI demó</title>
+  <link rel="stylesheet" href="/preview/fonts.css">
+  <link rel="stylesheet" href="/preview/demo.css">
+  <script src="/preview/mock-api.js"></script>
+</head>
+<body style="margin:0;background:#f8f6f1">
+<main class="demo-checkout">
+  <p>HELYI UI SZIMULÁCIÓ · NEM STRIPE</p>
+  <h1>Fizetési lépés előnézete</h1>
+  <p>A valódi fizetőoldal helyett ezt a helyi mintát használjuk. Nincs kártyamező, banki kapcsolat, terhelés vagy foglalás.</p>
+  <p id="demo-summary"></p>
+  <button id="complete" type="button">Szimulált eredmény megnyitása</button>
+  <button id="cancel" type="button">Megszakítás kipróbálása</button>
+  <p><a href="/foglalas/">Vissza a foglalási demóhoz</a></p>
+</main>
+<script>
+let saved;
+try { saved = JSON.parse(sessionStorage.getItem('ohana_demo_checkout') || '{}'); } catch { saved = {}; }
+document.getElementById('demo-summary').textContent = [saved.date, saved.label, Number.isFinite(saved.price) ? saved.price.toLocaleString('hu-HU') + ' Ft (minta)' : ''].filter(Boolean).join(' · ');
+document.getElementById('complete').addEventListener('click', () => { location.href = '/foglalas/?paid=1&session_id=DEMO-NO-RESERVATION'; });
+document.getElementById('cancel').addEventListener('click', () => { location.href = '/foglalas/?canceled=1'; });
+</script>
+</body>
+</html>

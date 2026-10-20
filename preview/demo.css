@@ -1,0 +1,10 @@
+#ohana-demo{position:relative;z-index:10001;background:#322d27;color:#fffdf8;padding:10px 20px;font:13px/1.4 system-ui,sans-serif;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+#ohana-demo strong{font-weight:750}#ohana-demo label{font-weight:400;margin:0}
+#ohana-demo select,#ohana-demo button{font:inherit;width:auto;border:1px solid #928576;border-radius:4px;padding:5px 8px;background:#fffdf8;color:#322d27;cursor:pointer}
+#ohana-demo a{color:inherit}
+#ohana-demo-message{flex-basis:100%;margin:0;color:#ffe1ad}
+[data-demo-external]{cursor:not-allowed!important}
+[data-demo-external]::after{content:" [demó]";font:10px system-ui,sans-serif;white-space:nowrap}
+.demo-checkout{max-width:640px;margin:70px auto;padding:30px;border:1px solid #d6cec2;background:#fffdf8;color:#302b26;font:18px/1.55 "Nunito Sans",system-ui,sans-serif}
+.demo-checkout h1{font:600 36px/1.15 Fraunces,Georgia,serif}.demo-checkout button,.demo-checkout select{font:inherit;padding:12px;border:1px solid #a85031;border-radius:6px;margin:8px 4px 8px 0}
+.demo-checkout button{background:#a85031;color:white;cursor:pointer}.demo-checkout label{display:block;margin-top:24px}

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+  <link rel="icon" type="image/png" href="/assets/favicon-64.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Foglalás — Ohana⁶</title>
+<meta name="description" content="Foglald le az Ohana termet egész sávokban — Reggeli sáv, Office Hours, Esti sáv vagy Egész nap. Jóga, hangfürdő, csoportterápia, workshop. Kulcs nélküli belépés.">
+<meta name="theme-color" content="#3B2E26">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Nunito+Sans:ital,opsz,wght@0,6..12,400..700;1,6..12,400..700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --espresso:#3B2E26; --fust:#2A211B; --oat:#F3EBE1; --card:#FBF7F0;
+  --terracotta:#B85C39; --terracotta-d:#9E4A2C; --terracotta-t:rgba(184,92,57,.12);
+  --blush:#C98E7B; --blush-t:rgba(201,142,123,.16); --stone:#B8AC9C; --stone-bg:#E6DCD2;
+  --ink:#241C17; --ink-soft:#5A4C43; --border:#E4D9CB; --on-dark:#F3EBE1;
+  --ok:#4a7a52; --radius:18px; --radius-sm:12px;
+  --shadow:0 10px 30px -12px rgba(59,46,38,.28); --shadow-lg:0 24px 60px -20px rgba(59,46,38,.35);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--oat);color:var(--ink);font-family:"Nunito Sans",system-ui,sans-serif;font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::after{content:"";position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+h1,h2,h3{font-family:"Fraunces",serif;font-weight:600;line-height:1.12;letter-spacing:-.01em;color:var(--espresso);margin:0 0 .4em}
+h1{font-size:clamp(28px,4vw,40px)} h2{font-size:clamp(22px,3vw,30px)} h3{font-size:19px}
+.it{font-style:italic;font-weight:500} .accent{color:var(--terracotta)}
+a{color:inherit} p{margin:0 0 1em}
+.muted{color:var(--ink-soft)} .small{font-size:14px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--espresso);color:var(--on-dark);padding:10px 16px;border-radius:8px;z-index:10000}
+.skip:focus{left:8px}
+:focus-visible{outline:3px solid var(--terracotta);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+
+/* header */
+header.nav{position:sticky;top:0;z-index:50;background:rgba(243,235,225,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:66px}
+.brand{font-family:"Fraunces",serif;font-size:25px;font-weight:600;color:var(--espresso);display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand svg{width:24px;height:24px;color:var(--terracotta)}
+.brand .brand-mark{height:40px;width:auto;display:block}
+.nav-back{font-weight:700;color:var(--ink-soft);text-decoration:none;font-size:16px}
+.nav-back:hover{color:var(--espresso)}
+
+/* layout */
+.wiz{display:grid;grid-template-columns:280px 1fr;gap:26px;padding:36px 0 64px;align-items:start}
+/* step sidebar */
+.steps{background:var(--stone-bg);border-radius:var(--radius);padding:14px;position:sticky;top:92px;box-shadow:var(--shadow)}
+.step{display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:12px;color:var(--ink-soft);font-weight:600;font-size:15.5px}
+.step .n{flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:#fff;color:var(--ink-soft);display:grid;place-items:center;font-weight:800;font-size:14px;border:2px solid var(--border)}
+.step .ico{margin-left:auto;width:18px;height:18px;opacity:0}
+.step.active{background:#fff;color:var(--espresso);box-shadow:var(--shadow)}
+.step.active .n{background:var(--terracotta);color:var(--on-dark);border-color:var(--terracotta)}
+.step.done{color:var(--ink-soft)}
+.step.done .n{background:var(--ok);color:#fff;border-color:var(--ok)}
+.step.done .ico{opacity:1;color:var(--ok)}
+.step.locked{opacity:.55}
+
+/* content card */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:clamp(24px,4vw,40px)}
+.kicker{font-family:"Nunito Sans";text-transform:uppercase;letter-spacing:.16em;font-size:12.5px;font-weight:800;color:var(--terracotta);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.kicker::before{content:"";width:22px;height:2px;background:var(--terracotta);border-radius:2px}
+.field{margin-bottom:20px}
+label.lbl{display:block;font-weight:700;color:var(--espresso);margin-bottom:8px;font-size:16px}
+label.lbl .req{color:var(--terracotta)}
+select,input[type=text],input[type=email],input[type=tel],textarea{width:100%;padding:14px 16px;border:1.5px solid var(--border);border-radius:12px;background:#fff;font-family:"Nunito Sans";font-size:17px;color:var(--ink);transition:border .16s, box-shadow .16s}
+select:focus,input:focus,textarea:focus{outline:none;border-color:var(--terracotta);box-shadow:0 0 0 3px var(--terracotta-t)}
+textarea{min-height:90px;resize:vertical}
+.help{font-size:14px;color:var(--ink-soft);margin-top:6px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:"Nunito Sans";font-weight:800;font-size:17px;padding:15px 26px;border-radius:999px;border:2px solid transparent;cursor:pointer;transition:transform .18s cubic-bezier(.22,1,.36,1),background .18s,box-shadow .18s}
+.btn svg{width:20px;height:20px}
+.btn-primary{background:var(--terracotta);color:var(--on-dark);box-shadow:var(--shadow)}
+.btn-primary:hover{background:var(--terracotta-d);transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.btn-primary:disabled{background:var(--stone);cursor:not-allowed;transform:none;box-shadow:none}
+.btn-ghost{background:transparent;color:var(--espresso);border-color:var(--blush)}
+.btn-ghost:hover{background:var(--blush-t)}
+.btn-row{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:28px;padding-top:22px;border-top:1px solid var(--border)}
+
+/* calendar */
+.cal{max-width:420px}
+.cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.cal-head h3{margin:0;font-size:20px}
+.cal-nav{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--border);background:#fff;color:var(--espresso);cursor:pointer;font-size:18px;display:grid;place-items:center;transition:.16s}
+.cal-nav:hover{border-color:var(--terracotta);color:var(--terracotta)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-dow{text-align:center;font-size:12px;font-weight:800;color:var(--ink-soft);padding:6px 0;text-transform:uppercase}
+.cal-day{aspect-ratio:1;display:grid;place-items:center;border-radius:10px;font-size:15px;font-weight:600;color:var(--ink);cursor:pointer;border:1.5px solid transparent;transition:.14s;background:#fff}
+.cal-day:hover:not(.disabled):not(.sel){border-color:var(--blush)}
+.cal-day.disabled{color:var(--stone);cursor:default;background:transparent}
+.cal-day.sel{background:var(--terracotta);color:var(--on-dark);font-weight:800}
+.cal-day.today{border-color:var(--terracotta)}
+
+/* slots */
+.slots-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:26px 0 12px}
+.slots{display:flex;flex-wrap:wrap;gap:9px}
+.spinner{display:inline-block;width:22px;height:22px;border-radius:50%;border:3px solid var(--border);border-top-color:var(--terracotta);animation:spin 1s linear infinite;vertical-align:middle}
+@keyframes spin{to{transform:rotate(360deg)}}
+.err{background:#f6e9e6;border:1px solid #e6c9bf;color:#8a3a2a;padding:14px 16px;border-radius:12px;margin:12px 0;font-size:15px}
+
+/* summary / cart */
+.sumline{display:flex;justify-content:space-between;gap:14px;padding:11px 0;border-bottom:1px solid var(--border);font-size:16.5px}
+.sumline .k{color:var(--ink-soft)}
+.sumline .v{font-weight:700;color:var(--espresso);text-align:right}
+.total{display:flex;justify-content:space-between;padding:16px 0 4px;font-family:"Fraunces";font-size:24px;color:var(--espresso);font-weight:600}
+
+/* block (sáv) cards */
+.blk{display:grid;grid-template-columns:1fr;gap:12px;margin-top:8px}
+.blk-opt{display:flex;align-items:center;gap:16px;border:1.5px solid var(--border);border-radius:14px;background:#fff;padding:16px 18px;cursor:pointer;transition:.15s;text-align:left}
+.blk-opt:hover:not(.disabled):not(.sel){border-color:var(--blush);transform:translateY(-1px)}
+.blk-opt.sel{border-color:var(--terracotta);box-shadow:0 0 0 3px var(--terracotta-t)}
+.blk-opt.disabled{opacity:.55;cursor:not-allowed;background:var(--stone-bg)}
+.blk-opt .b-t{font-weight:800;color:var(--espresso);font-size:17.5px}
+.blk-opt .b-d{font-size:14px;color:var(--ink-soft)}
+.blk-opt .b-p{margin-left:auto;font-family:"Fraunces",serif;font-weight:600;font-size:20px;color:var(--terracotta);white-space:nowrap}
+.blk-opt.disabled .b-p{color:var(--stone);text-decoration:line-through}
+
+/* checkbox */
+.chk{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:16px;cursor:pointer;margin-top:16px}
+.chk input{width:22px;height:22px;margin-top:2px;accent-color:var(--terracotta);flex:0 0 auto}
+.chk.err-border{border-color:#c0432f;box-shadow:0 0 0 3px rgba(192,67,47,.15)}
+
+/* success */
+.success{text-align:center;padding:20px 6px}
+.success .big{width:78px;height:78px;border-radius:50%;background:var(--terracotta-t);color:var(--terracotta);display:grid;place-items:center;margin:0 auto 18px}
+.success .big svg{width:38px;height:38px}
+.ref{max-width:100%;overflow-wrap:anywhere;display:inline-block;background:var(--stone-bg);border-radius:10px;padding:10px 18px;font-weight:800;color:var(--espresso);font-size:18px;letter-spacing:.04em;margin:12px 0}
+
+@media (max-width:860px){
+  .wiz{grid-template-columns:1fr;gap:18px}
+  .steps{position:static;display:flex;overflow-x:auto;gap:8px;padding:10px}
+  .step{flex:0 0 auto;padding:10px 12px}
+  .step .lbl-txt{display:none}
+  .step.active .lbl-txt{display:inline}
+}
+@media (prefers-reduced-motion: reduce){*{transition-duration:.001ms !important}}
+</style>
+<link rel="stylesheet" href="/tokens.css">
+<link rel="stylesheet" href="booking.css?v=20261018-feedback">
+</head>
+<body>
+<a class="skip" href="#main">Ugrás a foglaláshoz</a>
+
+<header class="nav"><div class="wrap nav-in">
+  <a class="brand" href="/"><img class="brand-mark" src="/assets/ohana-house-dark.png" alt="Ohana⁶ ház">Ohana⁶</a>
+  <a class="nav-back" href="/" aria-label="Vissza a főoldalra">&larr; Főoldal</a>
+</div></header>
+
+<main id="main" class="wrap">
+  <div class="booking-intro"><div><p class="kicker">A saját programod helye</p><h1>Találjuk meg az időpontod.</h1><p>Négy fix sáv. A teljes terem. A te programod.</p></div><a href="https://wa.me/36705306514" class="help-link">Segítség WhatsAppon ↗</a></div>
+  <div class="trial-notice" data-booking-status role="status" aria-live="polite"><span data-booking-copy="notice">Az online fizetési lehetőséget ellenőrizzük. Addig WhatsAppon tudsz egyeztetni.</span> <a href="https://wa.me/36705306514">Egyeztetés WhatsAppon ↗</a> <button type="button" class="text-back" data-booking-refresh id="mode-retry" disabled>Fizetési lehetőség újraellenőrzése</button></div>
+  <noscript><p class="err">Az időpontválasztóhoz JavaScript szükséges. <a href="https://wa.me/36705306514">Foglalás WhatsAppon</a>.</p></noscript>
+  <div class="wiz">
+    <!-- ===== Step sidebar ===== -->
+    <aside class="booking-side"><div class="steps" aria-label="Foglalás lépései">
+      <button type="button" class="step" aria-label="1. lépés: Dátum és idő" data-step="1"><span class="n">1</span><span class="lbl-txt">Dátum és idő</span><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg></button>
+      <button type="button" class="step" aria-label="2. lépés: Adatok" id="step-details" data-step="2"><span class="n">2</span><span class="lbl-txt">Adatok</span><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg></button>
+      <button type="button" class="step" aria-label="3. lépés: Összegzés" data-step="3"><span class="n">3</span><span class="lbl-txt">Összegzés</span><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg></button>
+    </div><div class="venue-summary"><img src="/assets/photos/szekkor-640.webp" width="640" height="427" alt="Az Ohana bolthajtásos terme, körbe rendezett székekkel"><h2>Ohana⁶ terem</h2><p>1089 Budapest,<br>Benyovszky Móric u. 6.</p><p class="small">95 m² · kulcs nélküli belépés</p><div id="selection-summary" aria-live="polite">Válassz napot és sávot.</div></div></aside>
+
+    <!-- ===== Content card ===== -->
+    <section class="card" aria-label="Foglalási űrlap">
+
+      <!-- STEP 1: Dátum és idő -->
+      <div class="panel" id="panel-1">
+        <p class="kicker">1. lépés</p>
+        <h2>Dátum <span class="accent">és idő</span></h2>
+        <p class="muted">A tér <strong>csak egész sávokban</strong> bérelhető. Válassz egy napot, majd egy sávot — a sáv teljes ideje a tiéd (a készülődést és elpakolást is számítsd bele).</p>
+        <div class="cal">
+          <div class="cal-head">
+            <button class="cal-nav" id="cal-prev" aria-label="Előző hónap">&larr;</button>
+            <h3 id="cal-title">—</h3>
+            <button class="cal-nav" id="cal-next" aria-label="Következő hónap">&rarr;</button>
+          </div>
+          <div class="cal-grid" id="cal-dows"></div>
+          <div class="cal-grid" id="cal-days"></div>
+        </div>
+        <div class="slots-head">
+          <h3 style="margin:0">Sávok</h3>
+          <span class="muted small" id="slots-for-date">válassz egy napot</span>
+        </div>
+        <div id="slots-msg" role="status" class="muted small">A naptárból válassz egy dátumot a sávok megtekintéséhez.</div>
+        <div class="blk" id="blocks"></div>
+        <a class="text-back contact-booking date-contact" data-booking-copy="cart-contact" href="https://wa.me/36705306514">Egyeztetés WhatsAppon ↗</a>
+        <div class="btn-row">
+          <span></span>
+          <button class="btn btn-primary" data-next="2" disabled id="next-1">Folytatás <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+      </div>
+
+      <!-- STEP 2: Adatok -->
+      <div class="panel" id="panel-2" hidden>
+        <p class="kicker">2. lépés</p>
+        <h2 data-booking-copy="details-title">A foglalás adatai</h2><p class="muted" data-booking-copy="details-copy">Az online fizetési lehetőséget még nem tudtuk ellenőrizni.</p>
+        <div class="field"><label class="lbl" for="name">Név <span class="req">*</span></label><input type="text" id="name" maxlength="120" required autocomplete="name" placeholder="Hogyan szólíthatunk?"></div>
+        <div class="field"><label class="lbl" for="email">Email <span class="req">*</span></label><input type="email" id="email" maxlength="254" required autocomplete="email" placeholder="nev@email.hu"><p class="help" data-booking-copy="email-help">Online fizetés jelenleg nem indítható.</p></div>
+        <div class="field"><label class="lbl" for="phone">Telefon <span class="req">*</span></label><input type="tel" id="phone" maxlength="40" required autocomplete="tel" placeholder="+36 30 000 0000"><p class="help" data-booking-copy="phone-help">Online fizetés jelenleg nem indítható.</p></div>
+        <div class="field"><label class="lbl" for="headcount">Létszám (fő)</label><input type="text" inputmode="numeric" id="headcount" maxlength="3" aria-describedby="capacity-help" placeholder="pl. 12"><p class="help" id="capacity-help">A létszámhatár programonként eltér. A program típusát az összegzésnél választod ki.</p></div>
+        <div class="field"><label class="lbl" for="notes">Megjegyzés (opcionális)</label><textarea id="notes" maxlength="500" placeholder="Bármi, amit tudnunk érdemes (létszám, speciális igény…)"></textarea></div>
+        <div id="form-err" role="alert"></div>
+        <div class="btn-row">
+          <button class="btn btn-ghost" data-prev="1">&larr; Vissza</button>
+          <button class="btn btn-primary" data-next="3" id="next-2">Folytatás <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Összegzés -->
+      <div class="panel" id="panel-3" hidden>
+        <p class="kicker">3. lépés</p>
+        <h2>Összegzés</h2><p class="muted" data-booking-copy="payment-copy">Az online fizetési lehetőséget még nem tudtuk ellenőrizni.</p><a class="btn btn-ghost contact-booking" data-booking-copy="cart-contact" href="https://wa.me/36705306514">Egyeztetés WhatsAppon ↗</a>
+        <div id="pay-summary"></div>
+        <div class="summary-program">
+          <label class="lbl" for="usecase">Program típusa <span class="req">*</span></label>
+          <select id="usecase" required aria-describedby="program-help program-err">
+            <option value="" selected disabled>Válassz programtípust…</option>
+            <option value="jóga">Jóga</option>
+            <option value="hangfürdő">Hangfürdő</option>
+            <option value="csoportterápia">Csoportterápia</option>
+            <option value="masszázs">Masszázs</option>
+            <option value="workshop">Workshop</option>
+          </select>
+          <p class="help" id="program-help">Válassz programot, hogy ellenőrizhessük a létszámot.</p>
+        </div>
+        <div id="program-err" role="alert"></div>
+        <div id="pay-total" class="total"></div>
+        <div id="pay-err" role="alert"></div>
+        <section class="rules" aria-labelledby="house-rules-title">
+          <h3 id="house-rules-title">Házirend</h3>
+          <ul class="house-rules">
+            <li>A készülődés és elpakolás a sáv része. Távozás előtt takaríts fel és állítsd vissza az alaprendet.</li>
+            <li>A plusz takarítás és az időtúllépés díját külön felszámítjuk.</li>
+            <li>A tér cipőmentes: utcai cipővel ne lépj a szőnyegre.</li>
+            <li>Dohányozni tilos. Gyertyát és füstölőt csak tálcán használj, és távozás előtt oltsd el.</li>
+            <li>Alkohol és drog használata tilos.</li>
+            <li>Hangos tevékenységnél az ajtók és ablakok legyenek csukva.</li>
+            <li>Télen a fűtés legfeljebb 26 °C-ra állítható.</li>
+          </ul>
+          <details><summary>Lemondás és időpont-módosítás</summary><p>Lemondást írásban az <a href="mailto:i@tomihermann.com">i@tomihermann.com</a> címen vagy <a href="https://wa.me/36705306514">WhatsAppon</a> kérhetsz; a visszaigazolást is írásban küldjük.</p><p>Egyedi foglalás vagy teljes bérlet lemondásakor a határidőket egyedi foglalásnál a lefoglalt időponttól, teljes bérletnél az első alkalom időpontjától számítjuk vissza. A befizetett összeg <strong>100%-a jár vissza legalább 21 naptári nappal előtte</strong>, <strong>50%-a 15–20 nappal előtte</strong>; <strong>0–14 nappal előtte nincs visszatérítés</strong>. Az egyedi foglalás vagy a teljes bérlet időpontja legalább 21 naptári nappal az így meghatározott kezdő időpont előtt módosítható. Megkezdett bérlet már nem mondható le; hátralévő alkalmai csak áthelyezhetők az alábbi feltételekkel.</p><p>A kedvezményes bérlet egyes alkalmai nem mondhatók le, és díjuk nem téríthető vissza. Áthelyezés legalább 15 nappal az alkalom előtt, írásban az <a href="mailto:i@tomihermann.com">i@tomihermann.com</a> címen kérhető, a szabad időpontok függvényében. 14 napon belül az alkalom felhasználtnak számít, és nem helyezhető át.</p></details>
+          <p><a href="https://tomihermann.notion.site/p/Ohana-Foglal-s-SZF-3de285bb7baa8003bce5d428a3824196?pvs=24" target="_blank" rel="noopener">ÁSZF megnyitása ↗</a></p>
+        </section>
+        <details class="test-checkout" id="checkout-panel" hidden><summary data-booking-copy="payment-summary">Online fizetés</summary><p class="small" data-booking-copy="payment-help">A fizetési lehetőséget még nem tudtuk ellenőrizni.</p>
+        <label class="chk" id="terms-wrap">
+          <input type="checkbox" id="terms" disabled>
+          <span>Elfogadom a fenti házirendet és az <a href="https://tomihermann.notion.site/p/Ohana-Foglal-s-SZF-3de285bb7baa8003bce5d428a3824196?pvs=24" target="_blank" rel="noopener">ÁSZF</a> lemondási és időpont-módosítási feltételeit. <span class="req">*</span></span>
+        </label>
+
+        <div class="btn-row">
+          <button class="btn btn-ghost" data-prev="2">&larr; Vissza</button>
+          <button class="btn btn-primary" id="submit-booking" disabled>Online fizetés nem érhető el <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg></button>
+        </div>
+        <p class="muted small" style="margin-top:14px" data-booking-copy="payment-footer">Online fizetés jelenleg nem indítható.</p></details><button class="text-back" data-prev="2">← Adatok módosítása</button>
+      </div>
+
+      <!-- SUCCESS -->
+      <div class="panel success" id="panel-success" hidden>
+        <div class="big"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 6"/></svg></div>
+        <h2 id="result-title">Fizetés ellenőrzése…</h2>
+        <p class="muted" id="result-copy" role="status" aria-live="polite">Kérjük, várj az ellenőrzés eredményére.</p>
+        <div class="ref" id="success-ref">—</div>
+        <div id="success-detail" class="muted" style="margin:8px 0 20px"></div>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+          <button type="button" class="btn btn-primary" id="result-retry" hidden>Állapot újraellenőrzése</button>
+          <a class="btn btn-ghost" href="https://wa.me/36705306514">Egyeztetés WhatsAppon ↗</a>
+          <a class="btn btn-primary" href="/">Vissza a főoldalra</a>
+          <a class="btn btn-ghost" href="#" id="book-again" hidden>Új foglalás</a>
+        </div>
+      </div>
+
+    </section>
+  </div>
+</main>
+
+<script src="/booking-mode.js?v=20261018-feedback" defer></script>
+<script src="booking.js?v=20261018-feedback" defer></script>
+</body>
+</html>

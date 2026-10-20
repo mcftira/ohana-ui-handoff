@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow">
+  <title>Ohana⁶ CRM · kapcsolatok — UI-minta</title>
+  <link rel="stylesheet" href="/previews/base.css">
+  <link rel="stylesheet" href="/themes/crm/tokens.css">
+  <link rel="stylesheet" href="/themes/crm/ohana.css">
+  <script src="/previews/crm.js" defer></script>
+</head>
+<body>
+  <aside class="preview-note"><p><strong>UI-minta.</strong> Kitalált kapcsolatok; nincs valódi CRM, belépés vagy mentés.</p><nav aria-label="Előnézetek"><a href="/">Weboldal</a><a href="/previews/booking-admin.html">Foglalási admin</a><a href="/previews/crm-login.html">Belépőminta</a></nav></aside>
+  <div class="crm-shell">
+    <aside id="navbar"><nav class="navbar" aria-label="CRM navigáció"><a class="navbar-brand" href="/previews/crm.html"><img class="logo" src="/themes/crm/assets/ohana-wordmark-20261018.svg" alt="Ohana⁶ CRM"></a><ul class="navbar-nav"><li><a href="/previews/booking-admin.html"><span class="full-label">Naptár és foglalások</span></a></li><li class="active"><a href="/previews/crm.html" aria-current="page"><span class="full-label">Kapcsolatok</span></a></li><li><a href="/previews/crm.html?view=leads"><span class="full-label">Érdeklődők</span></a></li></ul><p class="crm-bottom">Ohana⁶ CRM<br>Bemutató munkaterület</p></nav></aside>
+    <main id="content">
+      <div class="crm-topbar"><span>Ohana⁶ · CRM-minta</span><div class="crm-avatar"><span aria-hidden="true">MF</span><span>Minta Felhasználó</span></div></div>
+      <header class="page-header"><h1 class="header-title" id="workspace-title">Kapcsolatok</h1><button class="btn btn-primary" type="button" id="new-contact">+ Új kapcsolat</button></header>
+      <div class="search-panel"><label for="search">Keresés</label><input class="form-control" id="search" type="search" placeholder="Keresés a kitalált kapcsolatok között…" autocomplete="off"><label for="status-filter">Állapot</label><select class="form-control" id="status-filter"><option value="">Mind</option value="Aktív">Aktív</option><option value="Új">Új</option></select></div>
+      <div class="list"><table><thead><tr><th scope="col">Név</th><th scope="col">Email</th><th scope="col">Program</th><th scope="col">Állapot</th></tr></thead><tbody id="contact-list"></tbody></table><p class="crm-empty" id="empty-state" hidden>Nincs ilyen mintakapcsolat.</p></div>
+      <div class="list-footer"><span id="result-count" role="status"></span><span>A táblázat minden adata kitalált.</span></div>
+      <p class="preview-only">A natív EspoCRM űrlapok, jogosultságok és mentés nincsenek benne ebben a UI-mintában. Szerkeszthető stílusok: <code>themes/crm/tokens.css</code> és <code>themes/crm/ohana.css</code>.</p>
+    </main>
+  </div>
+  <dialog id="contact-dialog" aria-labelledby="contact-title"><p class="preview-only">Kitalált kapcsolat · csak UI-minta</p><h2 id="contact-title"></h2><div id="contact-details"></div><button class="btn btn-primary" type="button" id="close-contact">Bezárás</button></dialog>
+</body>
+</html>
